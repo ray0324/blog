@@ -1,0 +1,17 @@
+# theme
+
+# 导航
+nav:
+  首页: /
+  归档: /archives/
+  关于: /about/
+
+github: http://github.com/ray0324
+
+# RSS
+rss: false
+
+# 文章列表
+article_list:
+  # 单页显示的文章数目
+  count: 10 #单页显示的文章数目

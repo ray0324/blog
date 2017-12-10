@@ -1,0 +1,68 @@
+@import 'highlight/github.less';
+
+code {
+  font-family: "Menlo", "Meslo LG", monospace;
+  font-size: 13px;
+  border-radius: 2px;
+  padding: 2px 5px;
+  color: #d14;
+  background: #f8f8f8;
+}
+
+pre{
+  font-family: "Menlo", "Meslo LG", monospace;
+  font-size: 13px;
+  padding:0;
+  line-height: 22px;
+  code{
+    border: none;
+    display: block;
+    padding: 0;
+  }
+}
+
+.highlight{
+  border-radius: 4px;
+  padding: 10px 0;
+  overflow-x: auto;
+  margin: 10px 0;
+  figcaption{
+    a{
+      float: right;
+      &:before{
+        content: "";
+        display: table;
+      }
+      &:after{
+        clear: both;
+      }
+    }
+  }
+  pre{
+    margin:0;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  table{
+    width: auto;
+    border:none !important;
+    td{
+      padding:0;
+      border:none;
+      &.gutter{
+        color:#f90;
+        border-right: 1px solid #333;
+        text-align: right;
+        padding-right: 10px;
+      }
+      &.code{
+        padding-left: 10px;
+      }
+      .line{
+        line-height: 22px;
+        height: 22px;
+      }
+    }
+  }
+}

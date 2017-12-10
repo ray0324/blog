@@ -1,0 +1,17 @@
+#post-menu
+  nav
+    each link, key in theme.nav
+      a(href=link)= key
+  #toc!= toc(page.content,{ list_number: false })
+.container
+  div.head-line
+    h1 #{page.title}
+    .meta
+      span.author #{page.author || config.title}
+      time= date(page.date, config.date_format)
+      if page.tags && page.tags.length
+        .tags
+          i.fa.fa-tag
+          != list_tags(page.tags, { show_count: false, style: 'link' })
+
+  article.post!= page.content

@@ -1,0 +1,28 @@
+#footer{
+  display: flex;
+  padding:20px 0;
+  .copy,nav{
+    flex: 1;
+    color: #666;
+  }
+  nav{
+    text-align: right;
+    a{
+      line-height: 12px;
+      font-size: 12px;
+      font-weight: normal;
+      display: inline-block;
+      border-left: 1px dotted #888;
+      margin-left: 10px;
+      padding-left: 10px;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+      color: #2bbc8a;
+      &:first-child{
+        border-left: none;
+      }
+    }
+  }
+}
