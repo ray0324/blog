@@ -1,1 +1,6 @@
+!= partial('inc/header.pug',{active: '/'})
+#post-menu
+  nav
+    each link, key in theme.nav
+      a(href=link)= key
 h1 tags

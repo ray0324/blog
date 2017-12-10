@@ -2,7 +2,7 @@
   nav
     each link, key in theme.nav
       a(href=link)= key
-  #toc!= toc(page.content,{ list_number: false })
+  #toc!= toc(page.content,{ list_number: true })
 .container
   div.head-line
     h1 #{page.title}
