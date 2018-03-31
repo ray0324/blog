@@ -25,7 +25,7 @@ after_script:
 
 branches:
   only:
-    - blog-source
+    - master
 env:
  global:
    - GH_REF: github.com/ray0324/ray0324.github.io.git
