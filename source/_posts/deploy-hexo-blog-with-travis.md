@@ -110,7 +110,7 @@ env:
 3. 安装完成后执行 `hexo g`命令 生成静态博客
 4. 分布执行after_script中的操作最后将生成的代码发布到我们制定的Github博客仓库，这里仓库的地址为`GH_REF`即最后的global变量中的`GH_REF`.
 
- *注：`git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master`中`GH_TOKEN`和`GH_REF`分别为我们已经配置的Github Token以及我们要发布的魔表仓库，二者均为全局变量，其中GH_TOKEN我们不能对外公布，所以要配置在Travis的项目管理平台*
+ *注：`git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master`中`GH_TOKEN`和`GH_REF`分别为我们已经配置的Github Token以及我们要发布的目标仓库，二者均为全局变量，其中GH_TOKEN我们不能对外公布，所以要配置在Travis的项目管理平台*
 
 配置文件创建完成后我们将代码同步push到blog仓库进行更新
 
