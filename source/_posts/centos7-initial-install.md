@@ -1,3 +1,14 @@
+---
+title: CentOS 7 的初始化安装与配置
+date: 2018-04-25 09:50:10
+tags:
+  - centos
+  - mysql
+  - mongodb
+  - nodejs
+  - nginx
+---
+
 ## nodejs
 
 ### 二进制安装
