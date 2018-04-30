@@ -1,4 +1,10 @@
 language: node_js
+
+cache:
+  directories:
+    - ~/.npm
+    - node_modules
+
 node_js: stable
 
 # S: Build Lifecycle
