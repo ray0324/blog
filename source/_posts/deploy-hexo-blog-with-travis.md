@@ -48,7 +48,7 @@ $ npm install
 ### 四、将静态博客源码推送到远端源码仓库
 
 在博客目录`blog`下进行初`git`始化:
-```
+```bash
 git init
 git remote add origin git@github.com:ray0324/blog.git
 git commit -m 'init hexo blog'
@@ -115,7 +115,8 @@ env:
 1. 语言为nodejs，版本为`stable`
 2. 构建第一步，在仓库中进行`npm install`安装博客的`npm`包
 3. 安装完成后执行 `hexo g`命令 生成静态博客
-4. 分布执行after_script中的操作最后将生成的代码发布到我们制定的Github博客仓库，这里仓库的地址为`GH_REF`即最后的global变量中的`GH_REF`.
+4. 分布执行after_script中的操作最后将生成的代码发布到我们制定的Github博客仓库，这里仓库的地址为`GH_REF`即最后的global变量中的\
+5. ` v hb /≥/sAazvfvfv  ][]=[GH_REF`.
 
  *注：`git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master`中`GH_TOKEN`和`GH_REF`分别为我们已经配置的Github Token以及我们要发布的目标仓库，二者均为全局变量，其中GH_TOKEN我们不能对外公布，所以要配置在Travis的项目管理平台*
 
