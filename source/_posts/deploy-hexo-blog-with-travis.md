@@ -61,23 +61,23 @@ git push -u origin master
 ### 一、注册使用Github账号注册Travis CI账号。
 
 我们直接使用github账号授权登录Travis CI 如图
-![login](/images/2018-03-31/1.jpg)
+![login](/assets/images/2018-03-31/1.jpg)
 
 ### 二、申请一个Travis专用的Github Token供Travis使用
 
 如图，创建一个专用token 注意权限分配。小白的话除了删除权限 其余的都勾上吧。
-![login](/images/2018-03-31/5.jpg)
+![login](/assets/images/2018-03-31/5.jpg)
 创建的token值注意先保存在本地用记事本记录下来。这个token只有在创建的时候我们才能看到，
 需要保存下，否则下次只能更新才能看到。
 
 ### 三、选择我们的源码项目，作为构建目标
 
 这里我选择自己的blog源码仓库 如图
-![login](/images/2018-03-31/2.jpg)
+![login](/assets/images/2018-03-31/2.jpg)
 单击项目右侧的设置按钮，对仓库进行设置
-![login](/images/2018-03-31/3.jpg)
+![login](/assets/images/2018-03-31/3.jpg)
 配置如下，这里重点注意需要配置一个全局变量 用来存储Github Token，这里命名`GH_TOKEN`
-![login](/images/2018-03-31/4.jpg)
+![login](/assets/images/2018-03-31/4.jpg)
 
 ### 四、创建Travis配置文件
 
