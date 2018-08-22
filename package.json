@@ -1,19 +1,22 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ray0324/blog.git",
+  "author": "ray0324 <ray0324@foxmail.com>",
+  "license": "MIT",
   "private": true,
   "hexo": {
-    "version": "3.7.0"
+    "version": "3.7.1"
   },
   "dependencies": {
-    "hexo": "^3.4.3",
-    "hexo-deployer-git": "^0.3.1",
+    "hexo": "^3.7.1",
     "hexo-generator-archive": "^0.1.5",
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-jade": "^0.4.1",
     "hexo-renderer-less": "^0.2.0",
-    "hexo-renderer-marked": "^0.3.0",
-    "hexo-server": "^0.2.2"
+    "hexo-renderer-marked": "^0.3.2",
+    "hexo-renderer-pug": "^0.0.5",
+    "hexo-server": "^0.3.2"
   }
 }
