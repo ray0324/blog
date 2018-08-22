@@ -1,8 +1,0 @@
-header#header
-  .site IRAY.ME
-  nav
-    each link, key in theme.nav
-      if link === active
-        a(href=url_for(link) class='active')= key
-      else
-        a(href=url_for(link))= key

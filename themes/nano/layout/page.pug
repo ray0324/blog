@@ -1,3 +1,6 @@
-!= partial('inc/header.pug',{active: '/about/'})
+- console.log(page)
+// 关于
+include inc/navbar.pug
 .container
-  article.post!= page.content
+  article.about!= page.content
+  article.about!= page.content

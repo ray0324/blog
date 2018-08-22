@@ -1,14 +1,15 @@
-- var year = null
-- var change = false
+// 归档页面
+- var PAGE_ACTIVE = theme.nav.archives.url;
+- var LAST_YEAR = null
 - var posts = page.posts.sort('date', 'desc')
-!= partial('inc/header.pug',{active: '/archives/'})
+
+include inc/navbar.pug
 .container
   .archive-list
     - posts.each(function(post){
-      - var itemYear = date(post.date, 'YYYY')
-      if year !== itemYear
-        - year = itemYear
-        h2.archive-gutter #{year}年
+      if LAST_YEAR !== post.date.year()
+        - LAST_YEAR = post.date.year()
+        h2.archive-gutter #{LAST_YEAR}年
       .archive-item
         time #{date(post.date, config.date_format)}
         a(href=url_for(post.link || post.path)) #{post.title}

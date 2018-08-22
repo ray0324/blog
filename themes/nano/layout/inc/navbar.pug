@@ -1,0 +1,7 @@
+header#header
+  nav
+    each item in theme.nav
+      if item.url === PAGE_ACTIVE
+        a(href=url_for(item.url) class='active')= item.text
+      else
+        a(href=url_for(item.url))= item.text

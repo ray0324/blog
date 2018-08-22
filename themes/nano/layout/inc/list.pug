@@ -1,4 +1,5 @@
 - var posts = site.posts.sort('date', 'desc').limit(theme.article_list.count || 5)
+- console.log(site.posts)
 section#writing
   .archive-list
     - posts.each(function(post,i){

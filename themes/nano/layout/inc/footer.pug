@@ -1,6 +1,5 @@
 footer#footer
   .copy Copyright &copy; #{new Date().getFullYear()} #{config.author || config.title}
   nav
-    each link, key in theme.nav
-      a(href=link)= key
-  
+    each item in theme.nav
+      a(href=url_for(item.url))= item.text

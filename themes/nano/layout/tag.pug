@@ -1,6 +1,9 @@
-!= partial('inc/header.pug',{active: '/'})
-#post-menu
-  nav
-    each link, key in theme.nav
-      a(href=link)= key
-h1 tags
+- var PAGE_ACTIVE = theme.nav.tags.url;
+
+include inc/navbar.pug
+.archive-list
+  - page.posts.sort('date', 'desc').each(function(post){
+    .archive-item
+      time #{date(post.date, config.date_format)}
+      a(href=url_for(post.link || post.path)) #{post.title}
+  -})

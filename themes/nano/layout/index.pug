@@ -1,3 +1,13 @@
-!= partial('inc/header.pug',{active: '/'})
+// 首页
+- var PAGE_ACTIVE = theme.nav.home.url;
+include inc/navbar.pug
 .container
-  include inc/list.pug
+  section#writing
+  .archive-list
+    - page.posts.each(function(post,i){
+      .archive-item
+        time #{date(post.date, config.date_format)}
+        a(href=url_for(post.link || post.path)) #{post.title}
+    -})
+  .pagination!= paginator({prev_next:false})
+

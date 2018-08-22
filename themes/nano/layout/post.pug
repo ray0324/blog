@@ -1,9 +1,4 @@
-!= partial('inc/header.pug')
-//- #post-menu
-//-   nav
-//-     each link, key in theme.nav
-//-       a(href=link)= key
-//-   #toc!= toc(page.content,{ list_number: true })
+include inc/navbar.pug
 .container
   div.head-line
     h1 #{page.title}
@@ -16,3 +11,4 @@
           != list_tags(page.tags, { show_count: false, style: 'link' })
 
   article.post!= page.content
+  p post
