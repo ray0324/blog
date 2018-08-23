@@ -1,8 +1,9 @@
 - var PAGE_ACTIVE = theme.nav.tags.url;
 
 include inc/navbar.pug
-.tag-cloud
-  - page.tags.each(function(tag){
-    a(href=url_for(tag.path)) #{tag.name}
-      span #{tag.length}
-  -})
+.main
+  .tag-cloud
+    - page.tags.each(function(tag){
+      a(href=url_for(tag.path)) #{tag.name}
+        span #{tag.length}
+    -})
