@@ -1,7 +1,17 @@
-header#header
-  nav
-    each item in theme.nav
-      if item.url === PAGE_ACTIVE
-        a(href=url_for(item.url) class='active')= item.text
-      else
-        a(href=url_for(item.url))= item.text
+header.nav-bar
+  .nav
+    a.brand.pull-left
+    nav.nav-bar-wrap
+      ul.container
+        each item in theme.nav
+          - if (item.url === PAGE_ACTIVE) {
+            li.active
+              a(href=url_for(item.url))= item.text
+          - } else {
+          li
+            a(href=url_for(item.url))= item.text
+          - }
+  .nav-line
+    .nav-bar-wrap
+      .container.current
+        .cur

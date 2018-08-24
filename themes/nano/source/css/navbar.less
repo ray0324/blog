@@ -1,0 +1,65 @@
+.nav-bar {
+  font-family: 'Pingfang SC','jaf-bernino-sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+  position: absolute;
+  padding:0;
+  margin:0;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 65px;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .05);
+  &-fixed {
+    position: fixed;
+  }
+  &-wrap{
+    margin-right: 400px;
+    margin-left: 160px;
+  }
+  ul {
+    padding:0;
+    height: 64px;
+    list-style: none;
+    li {
+      float: left;
+      margin-right: 20px;
+      a {
+        font-size: 14px;
+        line-height: 64px;
+        display: block;
+        color: #666;
+        &:hover {
+          color: #222;
+        }
+      }
+      &.active {
+        a {
+          font-weight: bold;
+          color: #222;
+        }
+      }
+    }
+  }
+  .brand {
+    display: block;
+    float: left;
+    width: 120px;
+    height: 64px;
+  }
+  .nav-line {
+    height: 1px;
+    background: #f1f1f1;
+  }
+  .current {
+    position: relative;
+    height: 1px;
+    .cur {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1px;
+      background: #000;
+    }
+  }
+}

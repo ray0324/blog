@@ -10,5 +10,5 @@ include inc/navbar.pug
           i.fa.fa-tag
           != list_tags(page.tags, { show_count: false, style: 'link' })
 
-  article.post!= page.content
+  article.markdown!= page.content
   p post
