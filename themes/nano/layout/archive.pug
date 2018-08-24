@@ -4,13 +4,14 @@
 - var posts = page.posts.sort('date', 'desc')
 
 include inc/navbar.pug
-.container
-  .archive-list
-    - posts.each(function(post){
-      if LAST_YEAR !== post.date.year()
-        - LAST_YEAR = post.date.year()
-        h2.archive-gutter #{LAST_YEAR}年
-      .archive-item
-        time #{date(post.date, config.date_format)}
-        a(href=url_for(post.link || post.path)) #{post.title}
-    -})
+.main
+  .container
+    .archive-list
+      - posts.each(function(post){
+        if LAST_YEAR !== post.date.year()
+          - LAST_YEAR = post.date.year()
+          h2.archive-gutter #{LAST_YEAR}年
+        .archive-item
+          time #{date(post.date, config.date_format)}
+          a(href=url_for(post.link || post.path)) #{post.title}
+      -})

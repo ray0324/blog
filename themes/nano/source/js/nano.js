@@ -54,7 +54,7 @@ $.fn.autoFocus = function () {
 
 $(document).ready(function(){
   console.log('ready');
-  $('.nav-bar').autoFocus();
+  $('.navbar').autoFocus();
   $('pre code').each(function (i, block) {
     hljs.highlightBlock(block);
   });
