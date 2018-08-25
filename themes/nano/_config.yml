@@ -15,5 +15,8 @@ nav:
     text: 关于
     url: /about/
 
+# 语法高亮主题
+highlightTheme: vs
+
 # github
 github: http://github.com/ray0324

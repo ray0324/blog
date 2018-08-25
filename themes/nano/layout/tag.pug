@@ -1,9 +1,11 @@
 - var PAGE_ACTIVE = theme.nav.tags.url;
 
 include inc/navbar.pug
-.archive-list
-  - page.posts.sort('date', 'desc').each(function(post){
-    .archive-item
-      time #{date(post.date, config.date_format)}
-      a(href=url_for(post.link || post.path)) #{post.title}
-  -})
+.main
+  .container
+    .archive-list
+      - page.posts.sort('date', 'desc').each(function(post){
+        .archive-item
+          time #{date(post.date, config.date_format)}
+          a(href=url_for(post.link || post.path)) #{post.title}
+      -})

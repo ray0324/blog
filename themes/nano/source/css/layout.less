@@ -29,6 +29,25 @@ a {
   background: #fff;
 }
 
+.pagination{
+  .page-number {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    border:1px solid #222;
+    text-align: center;
+    line-height: 22px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    font-size: 12px;
+    &.current{
+      background: #222;
+      color:#fff;
+    }
+  }
+}
+
 // index.pug
 
 .article-list{

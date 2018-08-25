@@ -8,8 +8,7 @@ tags:
 
 > 使用EFF的Certbot为你的网站自动添加Let‘s Encrypt证书
 
-在https快速普及的今天，有必要为我们http服务添加一层tls加密。这里我们使用免费的letsencrypt来
-签发https证书。以下粗略记录了在服务端配置的详细过程。
+在https快速普及的今天，有必要为我们http服务添加一层tls加密。这里我们使用免费的letsencrypt来签发https证书。以下粗略记录了在服务端配置的详细过程。
 
 ## 一、安装 Certbot
 
@@ -24,6 +23,7 @@ yum -y install yum-utils
 yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 sudo yum install certbot-nginx
 ```
+
 然后使用以下命令自动安装并配置Nginx。
 
 ```bash

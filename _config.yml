@@ -6,7 +6,7 @@
 title: iray.me
 subtitle:
 description:
-author: Ruan Rongjun
+author: ray0324
 language: zh-CN
 timezone: Asia/Shanghai
 
@@ -50,9 +50,15 @@ index_generator:
   per_page: 5
   order_by: -date
 
+archive_generator:
+  per_page: 0
+  order_by: -date
+
 tag_generator:
   per_page: 0
   enable_index_page: true
+
+
 
 # Category & Tag
 default_category: uncategorized

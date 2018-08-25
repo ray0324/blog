@@ -1,13 +1,13 @@
 // 归档页面
 - var PAGE_ACTIVE = theme.nav.archives.url;
 - var LAST_YEAR = null
-- var posts = page.posts.sort('date', 'desc')
+//- - var posts = page.posts.sort('date', 'desc')
 
 include inc/navbar.pug
 .main
   .container
     .archive-list
-      - posts.each(function(post){
+      - page.posts.each(function(post){
         if LAST_YEAR !== post.date.year()
           - LAST_YEAR = post.date.year()
           h2.archive-gutter #{LAST_YEAR}年
