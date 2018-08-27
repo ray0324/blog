@@ -4,12 +4,10 @@ include inc/navbar.pug
     div.head-line
       h1 #{page.title}
       .meta
-        span.author #{page.author || config.title}
         time= date(page.date, config.date_format)
         if page.tags && page.tags.length
           .tags
             i.fa.fa-tag
             != list_tags(page.tags, { show_count: false, style: 'link' })
 
-    article.markdown!= page.content
-    p post
+    article#markdown!= page.content

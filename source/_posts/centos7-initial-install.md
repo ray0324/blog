@@ -57,7 +57,8 @@ touch /etc/yum.repos.d/nginx.repo
 # 编辑
 vim /etc/yum.repos.d/nginx.repo
 ```
-配置内容如下
+### 配置nginx的yun源
+
 ```conf
 # 添加以下内容 http://nginx.org/en/linux_packages.html#stable
 # [nginx]
@@ -71,6 +72,7 @@ baseurl=http://nginx.org/packages/centos/7/x86_64/
 gpgcheck=0
 enabled=1
 ```
+### 安装nginx
 
 ```bash
 # 安装nginx
@@ -87,6 +89,7 @@ netstat -tunlp | grep nginx
 
 
 ```
+### 配置nginx
 
 Nginx的配置参见[Nginx中文文档](http://www.nginx.cn/doc/),这里我根据实际需求，需要配置
 一个代理服务器，转发默认的`80`端口到本机的`5000`端口,具体如下

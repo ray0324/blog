@@ -16,7 +16,7 @@ nav:
     url: /about/
 
 # 语法高亮主题
-highlightTheme: vs
+highlightTheme: atom-one-dark
 
 # github
 github: http://github.com/ray0324

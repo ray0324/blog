@@ -1,15 +1,18 @@
 // 首页
 - var PAGE_ACTIVE = theme.nav.home.url;
-//- - console.log(page.posts);
-- console.log(site.posts.length, page.posts.length);
+- page.posts.each(function(p,i){if(i==0) console.log(p)})
+
 include inc/navbar.pug
 .main
   .container.home
     .article-list
       - page.posts.each(function(post){
         .article-list-item
-          time.date #{date(post.date, config.date_format)}
-          a(href=url_for(post.link || post.path)) #{post.title}
+          a(href=url_for(post.link || post.path) class="title") #{post.title}
+          //- p.excerpt #{post.excerpt}
+          p!= list_tags(post.tags, { show_count: false, style: 'link' })
+          time #{date(post.date, config.date_format)}
+          
       -})
     .pagination!= paginator({prev_next:false})
 

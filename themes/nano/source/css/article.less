@@ -6,49 +6,42 @@
   padding-top: 35px;
 }
 // 文章样式
-.markdown {
+#markdown {
   padding-top: 15px;
   font-family: -apple-system, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   line-height: 1.7;
   color: #373d49;
-  tr:hover {
-    background: #f9f9f9;
-  }
-  th, td {
-    padding: 6px 12px;
-    border: 1px solid #e5e5e5;
-  }
+
   //标题
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.5;
-    margin-bottom: 10px;
+    margin:15px 0;
   }
   h1 {
-      font-size: 36px;
+    font-size: 36px;
   }
   h2 {
-      font-size: 24px;
+    font-size: 24px;
   }
   h3 {
-      font-size: 20px;
+    font-size: 20px;
   }
   h4 {
-      font-size: 18px;
+    font-size: 18px;
   }
   h5 {
-      font-size: 16px;
+    font-size: 16px;
   }
   h6 {
-      font-size: 14px;
+    font-size: 14px;
   }
-  a {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #a0aabf;
+  p{
+    text-align: justify;
   }
-  a:hover, a:focus {
-    color: darken(#a0aabf, 10%);
+  a{
+    color: #2bbc8a;
+    margin:0 3px;
   }
   hr {
     margin: 10px 0;
@@ -61,7 +54,6 @@
   }
   code {
     padding: 2px 4px;
-    color: #c7254e;
     border-radius: 4px;
   }
   kbd {
@@ -80,32 +72,40 @@
     font-family: "Menlo", "Meslo LG", monospace;
     font-size: 14px;
     line-height: 1.5;
+    background: #f6f8fa;
     code{
       border: none;
       display: block;
     }
   }
-
   li {
-      margin-left: 1em;
+    margin-left: 1em;
   }
   li > ul, li > ol {
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
   p {
-      margin:  12px 0;
+    margin:  12px 0;
   }
   blockquote {
-      margin: 0;
-      p {
-          font-style: italic;
-          padding: 1em;
-          border-left: 3px solid #a0aabf;
-      }
+    margin: 0;
+    p {
+      font-style: italic;
+      padding: 1em;
+      border-left: 3px solid #a0aabf;
+    }
   }
   table {
-      width: 100%;
-      margin: 10px 0;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid #e5e5e5;
+    border-collapse: collapse;
+    tr:hover {
+      background: #f9f9f9;
+    }
+    th, td {
+      padding: 6px 12px;
       border: 1px solid #e5e5e5;
+    }
   }
 }

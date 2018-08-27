@@ -2,9 +2,12 @@ html, body {
   background: #fff;
   font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
+ul,ol{
+  margin:0;
+  padding:0;
+}
 a {
   text-decoration: none;
-  color: #222;
 }
 .pull-left {
   float: left !important;
@@ -53,8 +56,24 @@ a {
 .article-list{
   padding-bottom: 20px;
 }
+
 .article-list-item{
   padding:10px 0;
+  border-bottom: 1px solid #ddd;
+  .title{
+    font-size: 18px;
+    font-weight: bold;
+    color: inherit;
+  }
+  .excerpt{
+    font-size: 13px;
+    text-align: justify;
+    color:#999;
+  }
+  .tag-link {
+    color:#2bbc8a;
+    font-size: 13px;
+  }
   .date{
     opacity: 0.8;
     font-size: 80%;

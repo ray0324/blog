@@ -12,6 +12,6 @@ include inc/navbar.pug
           - LAST_YEAR = post.date.year()
           h2.archive-gutter #{LAST_YEAR}年
         .archive-item
-          time #{date(post.date, config.date_format)}
+          time #{date(post.date, 'MM/DD')}
           a(href=url_for(post.link || post.path)) #{post.title}
       -})
