@@ -1,11 +1,13 @@
 - var PAGE_ACTIVE = theme.nav.tags.url;
-
+- console.log(page)
 include inc/navbar.pug
 .main
   .container
     .archive-list
-      - page.posts.sort('date', 'desc').each(function(post){
-        .archive-item
+      h3.gutter #{page.tag}
+        span.bage #{page.posts.length}
+      - page.posts.each(function(post){
+        .list-item
           time #{date(post.date, config.date_format)}
           a(href=url_for(post.link || post.path)) #{post.title}
       -})

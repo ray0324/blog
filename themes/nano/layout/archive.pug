@@ -1,6 +1,6 @@
 // 归档页面
 - var PAGE_ACTIVE = theme.nav.archives.url;
-- var LAST_YEAR = null
+- var LAST_YEAR = '';
 
 include inc/navbar.pug
 .main
@@ -9,8 +9,8 @@ include inc/navbar.pug
       - page.posts.each(function(post){
         if LAST_YEAR !== post.date.year()
           - LAST_YEAR = post.date.year()
-          h2.archive-gutter #{LAST_YEAR}年
-        .archive-item
+          h3.gutter #{LAST_YEAR}年
+        .list-item
           time #{date(post.date, 'MM/DD')}
           a(href=url_for(post.link || post.path)) #{post.title}
       -})

@@ -1,12 +1,11 @@
 include inc/navbar.pug
 .main
   .container
-    div.head-line
-      h1 #{page.title}
-      .meta
-        time= date(page.date, config.date_format)
-        if page.tags && page.tags.length
-          .tags
-            i.fa.fa-tag
-            != list_tags(page.tags, { show_count: false, style: 'link' })
+    h1 #{page.title}
+    .meta
+      time= date(page.date, config.date_format)
+      if page.tags && page.tags.length
+        .tags
+          i.fa.fa-tag
+          != list_tags(page.tags, { show_count: false, style: 'link' })
     article#markdown!= page.content
