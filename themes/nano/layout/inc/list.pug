@@ -1,9 +1,0 @@
-- var posts = site.posts.sort('date', 'desc').limit(theme.article_list.count || 5)
-- console.log(site.posts)
-section#writing
-  .archive-list
-    - posts.each(function(post,i){
-      .archive-item
-        time #{date(post.date, config.date_format)}
-        a(href=url_for(post.link || post.path)) #{post.title}
-    -})
