@@ -2,6 +2,7 @@
 title: Mac下安装 Go tools
 date: 2018-07-27 13:19
 tags:
+  - Go
 ---
 
 安装go依赖包经常会遇到找不到`golang.org/x/tools/`的网络错误 这里采取github上的镜像安装

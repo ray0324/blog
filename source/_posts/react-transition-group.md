@@ -2,8 +2,8 @@
 title: React-transition-group 使用注意点
 date: 2018-08-22 01:44
 tags:
-  - react
-  - animation
+  - React
+  - Animation
 ---
 
 ## CSSTransition

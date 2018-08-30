@@ -2,11 +2,11 @@
 title: CentOS 7 的初始化安装与配置
 date: 2018-04-25 09:50:10
 tags:
-  - centos
-  - mysql
-  - mongodb
-  - nodejs
-  - nginx
+  - CentOS
+  - MySQL
+  - MongoDB
+  - Nodejs
+  - Nginx
 ---
 
 在配置阿里云ECS的过程中，经常需要安装下列软件

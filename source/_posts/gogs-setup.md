@@ -2,7 +2,7 @@
 title: 使用gogs配置Git服务
 date: 2018-08-28 09:20
 tags:
-  - gogs
+  - Gogs
 ---
 
 ## 工具

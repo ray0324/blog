@@ -2,7 +2,7 @@
 title: Mongodb登陆与授权
 date: 2018-04-02 08:52
 tags:
-  - Mongodb
+  - MongoDB
 ---
 
 ## 设置用户账号

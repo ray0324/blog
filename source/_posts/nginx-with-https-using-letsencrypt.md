@@ -2,8 +2,8 @@
 title: 使用Letsencrypt为Nginx添加https支持
 date: 2018-04-30 01:11:00
 tags:
-  - letsencrypt
-  - nginx
+  - Letsencrypt
+  - Nginx
 ---
 
 > 使用EFF的Certbot为你的网站自动添加Let‘s Encrypt证书
