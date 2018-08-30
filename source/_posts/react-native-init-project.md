@@ -1,6 +1,8 @@
 ---
 title: React Native init Project
 date: 2017-10-03 11:19
+tag:
+  - React
 ---
 
 ### 初始化指定版本

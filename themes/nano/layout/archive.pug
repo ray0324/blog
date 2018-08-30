@@ -4,7 +4,7 @@
 
 include inc/navbar.pug
 .main
-  .container
+  .container.archive
     .archive-list
       - page.posts.each(function(post){
         if LAST_YEAR !== post.date.year()

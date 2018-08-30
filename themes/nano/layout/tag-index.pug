@@ -2,9 +2,9 @@
 
 include inc/navbar.pug
 .main
-  .container
+  .container.tags
     .tag-cloud
       - page.tags.each(function(tag){
-        a(href=url_for(tag.path)) #{tag.name}
-          span #{tag.length}
+        a(href=url_for(tag.path) class="tag") #{tag.name} 
+          span (#{tag.length})
       -})
