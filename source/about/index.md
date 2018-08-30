@@ -11,5 +11,5 @@ layout: about
 ## 联系
 
 - QQ：545886131
-- E-Mail: ray0324@foxmail.com
+- E-mail: ray0324@foxmail.com
 - Mobile: 13005448800
