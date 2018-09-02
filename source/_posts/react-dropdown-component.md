@@ -5,7 +5,7 @@ tags:
   - React
 ---
 
-React Dropdown下拉组件是一个比较典型的应用。通常在设计组件的时只关注组件内部的事件传递和事件处理函数，而下拉菜单组件就需要在组件外部绑定事件，这个应用比较典型。
+React Dropdown下拉组件是一个比较典型的应用。通常在设计组件的时只关注组件内部的事件传递和事件处理，遇到需要在全局绑定事件处理函数的时候，并不知道该怎么坐，下拉菜单组件就是一个典型的例子，当展开菜单后，需要在全局注册一个`click`事件，当点击组件以外的区域时，需要折叠该下拉菜单。这是一个比较典型的应用案例。
 
 ## 组件源码
 
@@ -34,6 +34,7 @@ class Dropdown extends React.Component {
   hideDropdownMenu() {
     // 在这里解绑组件在DOM根节点上绑定的事件
     this.setState({ displayMenu: false }, () => {
+      // 注意事件的绑定解绑不能传递匿名函数
       document.removeEventListener('click', this.hideDropdownMenu);
     });
   }
