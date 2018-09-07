@@ -1,8 +1,7 @@
 .navbar {
   font-family: 'Pingfang SC','jaf-bernino-sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
   position: absolute;
-  padding:0;
-  margin:0;
+  padding-right:64px;
   z-index: 100;
   top: 0;
   right: 0;
@@ -13,15 +12,28 @@
   &-fixed {
     position: fixed;
   }
-  &-wrap{
-    margin-right: 400px;
-    margin-left: 160px;
-  }
+
   &-nav{
+    height: 64px;
+    width: 700px;
+    margin:0 auto;
+    position: relative;
+    .brand {
+      position: absolute;
+      top:0;
+      left:-84px;
+      display: block;
+      float: left;
+      width: 64px;
+      height: 64px;
+      background: url(../img/logo.png);
+      background-position: center center;
+      background-size: cover;
+    }
     ul {
-      padding:0;
       height: 64px;
       list-style: none;
+      // margin-left: 84px;
       li {
         float: left;
         margin-right: 20px;
@@ -43,16 +55,12 @@
       }
     }
   }
-  .brand {
-    display: block;
-    float: left;
-    width: 120px;
-    height: 64px;
-  }
   &-line {
     height: 1px;
     background: #f1f1f1;
     .current {
+      width: 700px;
+      margin:0 auto;
       position: relative;
       height: 1px;
       .cur {

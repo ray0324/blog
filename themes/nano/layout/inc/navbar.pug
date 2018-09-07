@@ -1,16 +1,16 @@
-header.navbar
+header.navbar.navbar-fixed
   .navbar-nav
-    a.brand.pull-left
-    nav.navbar-wrap
-      ul.container
-        each item in theme.nav
-          - if (item.url === PAGE_ACTIVE) {
-            li.active
+      div.container
+        a.brand
+        ul
+          each item in theme.nav
+            - if (item.url === PAGE_ACTIVE) {
+              li.active
+                a(href=url_for(item.url))= item.text
+            - } else {
+            li
               a(href=url_for(item.url))= item.text
-          - } else {
-          li
-            a(href=url_for(item.url))= item.text
-          - }
+            - }
   .navbar-line
     .navbar-wrap
       .container.current
