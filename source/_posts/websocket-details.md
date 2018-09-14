@@ -7,7 +7,7 @@ tags:
 
 ## 协议简介
 
-[WebSocket](tools.ietf.org/html/rfc6455)是全双工、双向连接的通信协议。利用Websocket协议，我们可以可以很容易实现双向通信。
+[WebSocket](http://tools.ietf.org/html/rfc6455)是全双工、双向连接的通信协议。利用Websocket协议，我们可以可以很容易实现双向通信。
 
 ## 握手
 
