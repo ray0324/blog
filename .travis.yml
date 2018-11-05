@@ -5,7 +5,7 @@ cache:
     - ~/.npm
     - node_modules
 
-node_js: stable
+node_js: 10.13
 
 # S: Build Lifecycle
 install:
