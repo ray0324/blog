@@ -75,11 +75,13 @@ mysql>source d:/dbname.sql
 **解决 `client does not support authentication protocol requested by server;`**
 
 ```sql
+
 -- mysql8 之前的版本中加密规则是mysql_native_password
 -- 而在mysql8之后,加密规则是caching_sha2_password
 -- 把用户密码登录的加密规则还原成mysql_native_password这种加密方式
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
 ``
 
 
