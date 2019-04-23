@@ -43,7 +43,7 @@ function App() {
               key={location.pathname}
               classNames="page"
               appear
-              timeout={550}
+              timeout={850}
             >
               <Switch location={location}>
                 <Route exact path="/" component={wrap(Index)} />
@@ -153,7 +153,6 @@ export default class Index extends Component {
   top: 0;
   left: 0;
   right: 0;
-  height: 120%;
 }
 
 .page-appear {
@@ -164,7 +163,7 @@ export default class Index extends Component {
 .page-appear-active {
   opacity: 1;
   top: 0;
-  transition: opacity 350ms ease-in, top 350ms ease-in;
+  transition: opacity 550ms ease-in, top 550ms ease-in;
 }
 
 .page-enter {
@@ -175,7 +174,7 @@ export default class Index extends Component {
 .page-enter-active {
   opacity: 1;
   top: 0;
-  transition: opacity 350ms ease-in 200ms, top 350ms ease-in 200ms;
+  transition: opacity 550ms ease-in 300ms, top 550ms ease-in 300ms;
 }
 
 .page-exit {
@@ -186,11 +185,7 @@ export default class Index extends Component {
 .page-exit-active {
   opacity: 0;
   top: 20px;
-  transition: opacity 150ms ease, top 150ms ease;
-}
-
-.index, .about, .home {
-  height: 100%;
+  transition: opacity 250ms ease, top 250ms ease;
 }
 
 ```
