@@ -27,7 +27,7 @@ brew install privoxy
 ```
 
 2. 打开shadowsocks，查看到shadowsocks的socks5监听地址，我本机的监听地址为`127.0.0.1:1086`
-![privoxy](/assets/images/2019-05-29/1.jpg)
+![privoxy](/assets/images/2019-05-29/1.png)
 
 3. 配置privoxy代理
 
@@ -72,7 +72,7 @@ curl www.google.com
 
 flutter的安装比较简单，我们到官网下载fluter包，解压后，即可使用。
 
-1. 拷贝解药后的flutter开发包，防止在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
+1. 拷贝解压后的flutter开发包，防止在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
 2. 配置环境变量$path
 
 ```bash
