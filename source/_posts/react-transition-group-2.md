@@ -1,6 +1,6 @@
 ---
 title: React-transition-group 之异步路由动画
-date: 2019-04-23 10：47
+date: 2019-04-23 10:47
 tags:
   - React
   - Animation
