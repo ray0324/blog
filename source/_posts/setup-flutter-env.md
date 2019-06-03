@@ -72,7 +72,7 @@ curl www.google.com
 
 flutter的安装比较简单，我们到官网下载fluter包，解压后，即可使用。
 
-1. 拷贝解压后的flutter开发包，防止在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
+1. 拷贝解压后的flutter开发包，放置在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
 2. 配置环境变量$path
 
 ```bash
