@@ -69,16 +69,16 @@ $(document).ready(function() {
     hljs.highlightBlock(block);
   });
   // 消息通知
-  Push.Permission.request();
-  setInterval(function() {
-    Push.create("Iray.me!", {
-      body: "Time:" + new Date().toLocaleString(),
-      icon: "/img/favicon.ico",
-      timeout: 3000,
-      onClick: function() {
-        window.focus();
-        this.close();
-      }
-    });
-  }, 12000);
+  // Push.Permission.request();
+  // setInterval(function() {
+  //   Push.create("Iray.me!", {
+  //     body: "Time:" + new Date().toLocaleString(),
+  //     icon: "/img/favicon.ico",
+  //     timeout: 3000,
+  //     onClick: function() {
+  //       window.focus();
+  //       this.close();
+  //     }
+  //   });
+  // }, 12000);
 });
