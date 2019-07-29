@@ -72,9 +72,13 @@ $(document).ready(function() {
   Push.Permission.request();
   setTimeout(function() {
     Push.create("Iray.me!", {
-      body: "How's it hangin'?",
+      body: "Time:" + new Date().toLocaleString(),
       icon: "/img/favicon.ico",
-      timeout: 4000
+      timeout: 3000,
+      onClick: function() {
+        window.focus();
+        this.close();
+      }
     });
-  },3000);
+  }, 12000);
 });
