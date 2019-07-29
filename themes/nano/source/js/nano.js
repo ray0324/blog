@@ -70,7 +70,7 @@ $(document).ready(function() {
   });
   // 消息通知
   Push.Permission.request();
-  setTimeout(function() {
+  setInterval(function() {
     Push.create("Iray.me!", {
       body: "Time:" + new Date().toLocaleString(),
       icon: "/img/favicon.ico",
