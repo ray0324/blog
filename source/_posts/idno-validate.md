@@ -17,15 +17,16 @@ tags:
 
 ```js
 function isIdNo18(num) {
+  // 这里只做18位身份证号码校验
   if (num.length !== 18) {
-    throw new Error("ID length must be 18");
+    return false;
   }
 
   const arr = num.split("");
-  // replace x width 10;
+  // 将身份证末尾的x换成10
   arr[17] = arr[17].toLowerCase() === "x" ? 10 : arr[17];
 
-  // sum
+  // 求和
   const sum = arr.reduceRight((prev, cur, i) => {
     return prev + (Math.pow(2, 17 - i) % 11) * Number(cur);
   }, 0);
