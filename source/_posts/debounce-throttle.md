@@ -1,9 +1,9 @@
 ---
-title: Nodejs终端展示进度条
-date: 2018-11-15 22:12
+title: Debounce & Throttle
+date: 2020-05-19 17:29
 tags:
-  - tty progress
-  - Nodejs
+  - debounce
+  - throttle
 ---
 
 ## Debounce
