@@ -1,26 +1,26 @@
 // 文章
-.post{
-  h1{
+.post {
+  h1 {
     font-size: 30px;
-    margin:16px 0;
+    margin: 16px 0;
   }
-  .meta{
-    time{
+  .meta {
+    time {
       font-size: 14px;
-      color:#999;
+      color: #999;
     }
-    .tags{
+    .tags {
       padding-top: 8px;
       font-size: 12px;
-      color:#aaa;
-      .tag-link{
+      color: #aaa;
+      .tag-link {
         display: inline-block;
-        padding:2px 4px;
+        padding: 2px 4px;
         margin-right: 6px;
-        color:#999;
+        color: #999;
         border: 1px solid #eee;
         border-radius: 2px;
-        &:hover{
+        &:hover {
           color: #2bbc8a;
           border: 1px solid #2bbc8a;
           transition: 200ms;
@@ -33,19 +33,25 @@
 // 文章样式
 #markdown {
   padding-top: 15px;
-  font-family: -apple-system, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: -apple-system, "Helvetica Neue", "Arial", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   line-height: 1.7;
   color: #373d49;
   //标题
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 600;
     line-height: 1.5;
-    margin:15px 0;
-    a{
+    margin: 15px 0;
+    a {
       width: 0;
       height: 0;
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
     }
   }
   h1 {
@@ -66,12 +72,12 @@
   h6 {
     font-size: 14px;
   }
-  p{
+  p {
     text-align: justify;
   }
-  a{
+  a {
     color: #2bbc8a;
-    margin:0 3px;
+    margin: 0 3px;
   }
   hr {
     margin: 10px 0;
@@ -91,31 +97,35 @@
     color: #fff;
     border-radius: 3px;
     background-color: #333;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
   }
   kbd kbd {
     font-size: 100%;
     padding: 0;
     box-shadow: none;
   }
-  pre{
-    font-family: "Menlo", "Meslo LG", monospace;
+  pre {
+    font-family: "Fira Code", "Cascadia Code", "Microsoft YaHei Mono", Consolas,
+      "Courier New", "Menlo", "Meslo LG", monospace;
     font-size: 14px;
     line-height: 1.5;
     background: #f6f8fa;
-    code{
+    code {
       border: none;
       display: block;
+      font-family: "Fira Code", "Cascadia Code", "Microsoft YaHei Mono",
+        Consolas, "Courier New", "Menlo", "Meslo LG", monospace;
     }
   }
   li {
     margin-left: 1em;
   }
-  li > ul, li > ol {
+  li > ul,
+  li > ol {
     margin-bottom: 0;
   }
   p {
-    margin:  12px 0;
+    margin: 12px 0;
   }
   blockquote {
     margin: 0;
@@ -133,7 +143,8 @@
     tr:hover {
       background: #f9f9f9;
     }
-    th, td {
+    th,
+    td {
       padding: 6px 12px;
       border: 1px solid #e5e5e5;
     }
