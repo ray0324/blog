@@ -63,6 +63,16 @@ $.fn.autoFocus = function() {
   });
 };
 
+// 百度统计
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8d872460845144af2aa753b2d61d7791";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
 $(document).ready(function() {
   $(".navbar").autoFocus();
   $("pre code").each(function(i, block) {
