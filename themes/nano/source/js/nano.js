@@ -16,29 +16,29 @@ function AutoFocus($element) {
   this.addAutoFocusListener();
 }
 
-AutoFocus.prototype.getActiveInfo = function() {
+AutoFocus.prototype.getActiveInfo = function () {
   if (this.$active.length !== 1) {
     return {
       width: 0,
-      offset: 0
+      offset: 0,
     };
   }
   return {
     width: this.$active.width(),
-    offset: this.$active.offset().left - this.baseLeft
+    offset: this.$active.offset().left - this.baseLeft,
   };
 };
 
-AutoFocus.prototype.init = function() {
+AutoFocus.prototype.init = function () {
   this.$cur.css({
     width: this.activeWidth,
-    left: this.activeOffset + this.paddingLeftWidth
+    left: this.activeOffset + this.paddingLeftWidth,
   });
 };
 
-AutoFocus.prototype.addAutoFocusListener = function() {
+AutoFocus.prototype.addAutoFocusListener = function () {
   var self = this;
-  this.$li.on("mouseenter", function() {
+  this.$li.on("mouseenter", function () {
     var _width = $(this).width();
     var _offset = $(this).offset().left - self.$ul.offset().left;
     self.$cur
@@ -46,36 +46,35 @@ AutoFocus.prototype.addAutoFocusListener = function() {
       .animate({ left: _offset + self.paddingLeftWidth, width: _width }, 200);
   });
 
-  this.$ul.on("mouseleave", function() {
+  this.$ul.on("mouseleave", function () {
     self.$cur.stop(true, true).animate(
       {
         left: self.activeOffset + self.paddingLeftWidth,
-        width: self.activeWidth
+        width: self.activeWidth,
       },
       200
     );
   });
 };
 
-$.fn.autoFocus = function() {
-  this.each(function() {
+$.fn.autoFocus = function () {
+  this.each(function () {
     new AutoFocus($(this));
   });
 };
 
-// 百度统计
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?8d872460845144af2aa753b2d61d7791";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+// // 百度统计
+// var _hmt = _hmt || [];
+// (function() {
+//   var hm = document.createElement("script");
+//   hm.src = "https://hm.baidu.com/hm.js?8d872460845144af2aa753b2d61d7791";
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(hm, s);
+// })();
 
-
-$(document).ready(function() {
+$(document).ready(function () {
   $(".navbar").autoFocus();
-  $("pre code").each(function(i, block) {
+  $("pre code").each(function (i, block) {
     hljs.highlightBlock(block);
   });
   // 消息通知
