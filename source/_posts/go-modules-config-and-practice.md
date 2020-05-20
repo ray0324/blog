@@ -1,6 +1,6 @@
 ---
 title: Go modules的配置实践
-date: 2019-12-10 16：53
+date: 2019-12-10 16:53
 tags:
   - Go
 ---
