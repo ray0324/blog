@@ -4,8 +4,29 @@ date: 2021-01-14 16:50
 tags:
   - Base64
   - ArrayBuffer
+  - Uint8Array
 ---
 
+## 通过`window.atob`和`Uint8Array`方法
+
+```js
+
+const base64 = "xmE0AcdhNAHHYTQB";
+const raw = window.atob(base64);
+
+const uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+uint8Array.forEach((_,i)=>uint8Array[i] = raw.charCodeAt(i));
+
+const arrayBuffer = uint8Array.buffer;
+
+console.log(uint8Array);
+console.log(arrayBuffer);
+
+
+```
+**注意：nodejs无atob方法**
+
+## 通过`Uint8Array`方法
 
 ```js
 
