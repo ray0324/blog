@@ -22,4 +22,4 @@ jobs:
       - run: git config user.email "ray0324@foxmail.com"
       - run: git add .
       - run: git commit -m "Update docs"
-      - run: git push --force --quiet "https://${GH_TOKEN}@${github.com/ray0324/ray0324.github.io.git}" master:master
+      - run: git push --force --quiet "https://${GH_TOKEN}@github.com/ray0324/ray0324.github.io.git" master:master
