@@ -1,0 +1,122 @@
+html,
+body {
+  background: #fff;
+  font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  width: 700px;
+  margin: 0 auto;
+}
+.main {
+  margin-top: 65px;
+  padding-top: 30px;
+  padding-right: 64px;
+  background: #fff;
+}
+.pagination .page-number {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  border: 1px solid #222;
+  color: #222;
+  text-align: center;
+  line-height: 22px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  font-size: 12px;
+}
+.pagination .page-number.current {
+  background: #222;
+  color: #fff;
+}
+.article-list {
+  padding-bottom: 20px;
+}
+.article-list-item {
+  padding: 10px 0;
+}
+.article-list-item h3 {
+  margin: 0 0 8px;
+}
+.article-list-item h3 a {
+  font-size: 18px;
+  font-weight: bold;
+  color: inherit;
+}
+.article-list-item h3 a:hover {
+  color: #2bbc8a;
+  transition: 200ms;
+}
+.article-list-item time {
+  color: #999;
+  font-size: 13px;
+}
+.archive-list .gutter {
+  font-size: 18px;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+.archive-list .gutter .bage {
+  position: relative;
+  display: inline-block;
+  top: -3px;
+  line-height: 16px;
+  font-weight: normal;
+  margin-left: 8px;
+  background: #2bbc8a;
+  vertical-align: middle;
+  color: #fff;
+  padding: 2px 6px;
+  height: 16px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.archive-list .list-item {
+  margin: 8px 0;
+}
+.archive-list .list-item time {
+  font-size: 14px;
+  color: #999;
+  margin-right: 6px;
+}
+.archive-list .list-item a {
+  color: #222;
+}
+.archive-list .list-item a:hover {
+  color: #2bbc8a;
+  transition: 200ms;
+}
+.tag-cloud .tag {
+  display: inline-block;
+  color: #666;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 22px;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  background: #fff;
+  transition: .3s;
+}
+.tag-cloud .tag span {
+  color: #999;
+}
+.tag-cloud .tag:hover {
+  border: 1px solid #2bbc8a;
+  color: #2bbc8a;
+}
+.tag-cloud .tag:hover span {
+  color: #2bbc8a;
+}

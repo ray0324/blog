@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>WebSocket详解</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>WebSocket详解</h1><div class="meta"><time>2018-09-10</time><div class="tags"><a class="tag-link" href="/tags/websocket/">websocket </a></div></div><article id="markdown"><h2 id="协议简介"><a href="#协议简介" class="headerlink" title="协议简介"></a>协议简介</h2><p><a href="http://tools.ietf.org/html/rfc6455" target="_blank" rel="noopener">WebSocket</a>是全双工、双向连接的通信协议。利用Websocket协议，我们可以可以很容易实现双向通信。</p>
+<h2 id="握手"><a href="#握手" class="headerlink" title="握手"></a>握手</h2><p>WebSocket协议的握手采用http请求，首先由客户端发起一个一个http的GET请求</p>
+<h3 id="2-1-请求报文"><a href="#2-1-请求报文" class="headerlink" title="2.1 请求报文"></a>2.1 请求报文</h3><pre><code>
+GET / HTTP/1.1
+Host: 127.0.0.1:5001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,fr;q=0.7
+Sec-WebSocket-Key: GmWO5Q6xbLV6omMei0ZYmQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+</code></pre><p>我们提取一下这个握手请求中关键部分：</p>
+<pre><code>
+GET / HTTP/1.1
+Host: 127.0.0.1:5001
+Connection: Upgrade
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Key: GmWO5Q6xbLV6omMei0ZYmQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+</code></pre><p>服务端通过识别<code>Connection: Upgrade</code>和<code>Upgrade: websocket</code>字段来确定这是一个客户端请求建立Websocket链接，此时服务端需要回应客户端的握手请求。</p>
+<h3 id="2-2-响应报文"><a href="#2-2-响应报文" class="headerlink" title="2.2 响应报文"></a>2.2 响应报文</h3><p>响应报文的关键部分：</p>
+<pre><code>
+HTTP/1.1 101 Switching Protocols
+Connection: Upgrade
+Upgrade: websocket
+Sec-WebSocket-Accept: eXzH3FMcn1/SVIsQt1CY911cvSw=
+
+</code></pre><p>其中<code>Sec-WebSocket-Accept</code>字段是服务端根据客户端握手请求报文中<code>Sec-WebSocket-Key</code>字段值进行特定的计算而得到的，其计算方式如下</p>
+<pre><code class="js">
+crypto.createHash(&#39;sha1&#39;).update(&#39;GmWO5Q6xbLV6omMei0ZYmQ==&#39;+&#39;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#39;).digest(&#39;base64&#39;)
+
+</code></pre>
+<p>即先将<code>Sec-WebSocket-Key</code>的值与<code>258EAFA5-E914-47DA-95CA-C5AB0DC85B11</code>这个GUID字符串进行拼接，然后算出sha1值，最后转成base64编码。</p>
+<p>当客户端收到以上握手响应报文之后，握手就成功建立，客户端与服务端就可以进行WebSocket通信了。</p>
+<h2 id="数据帧"><a href="#数据帧" class="headerlink" title="数据帧"></a>数据帧</h2><pre><code>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-------+-+-------------+-------------------------------+
+|F|R|R|R| opcode|M| Payload len |    Extended payload length    |
+|I|S|S|S|  (4)  |A|     (7)     |             (16/64)           |
+|N|V|V|V|       |S|             |   (if payload len==126/127)   |
+| |1|2|3|       |K|             |                               |
++-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +
+|     Extended payload length continued, if payload len == 127  |
++ - - - - - - - - - - - - - - - +-------------------------------+
+|                               |Masking-key, if MASK set to 1  |
++-------------------------------+-------------------------------+
+| Masking-key (continued)       |          Payload Data         |
++-------------------------------- - - - - - - - - - - - - - - - +
+:                     Payload Data continued ...                :
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+|                     Payload Data continued ...                |
++---------------------------------------------------------------+
+
+</code></pre><p>未完待续。。。</p>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

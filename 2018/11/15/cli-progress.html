@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Nodejs终端展示进度条</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Nodejs终端展示进度条</h1><div class="meta"><time>2018-11-15</time><div class="tags"><a class="tag-link" href="/tags/Nodejs/">Nodejs </a><a class="tag-link" href="/tags/tty-progress/">tty progress </a></div></div><article id="markdown"><p>在用nodejs进行终端应用开发的时候经常有在终端查看进度的需求。我们可以使用<code>ansi-diff-stream</code>结合<code>progress-string</code>在实现这一需求。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><pre><code class="js">var progress = require(&#39;progress-string&#39;)
+var diff = require(&#39;ansi-diff-stream&#39;)()
+
+var value = 0
+var total = 200
+var bar = progress({
+  width: 60,
+  incomplete:&#39;-&#39;,
+  complete:&#39;#&#39;,
+  total: total
+})
+
+setInterval(function () {
+  diff.write(
+    &#39;The time is: &#39; + new Date() + &#39;\n&#39; +
+    &#39;The progress of the program is:\n&#39; +
+    &#39;[&#39;+bar(++value)+&#39;]&#39;+(value/total*100).toFixed(2)+&#39;%&#39;
+  )
+  if (value === total) process.exit()
+}, 100)
+
+diff.pipe(process.stdout)
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

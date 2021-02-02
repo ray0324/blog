@@ -1,0 +1,38 @@
+#footer {
+  margin-top: 65px;
+  padding-top: 30px;
+  padding-right: 64px;
+  background: #fff;
+}
+#footer .container {
+  display: flex;
+  padding: 20px 0;
+}
+#footer .copy,
+#footer nav {
+  flex: 1;
+  color: #666;
+}
+#footer .copy {
+  font-size: 12px;
+}
+#footer nav {
+  text-align: right;
+}
+#footer nav a {
+  line-height: 12px;
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+  border-left: 1px dotted #888;
+  margin-left: 10px;
+  padding-left: 10px;
+  color: #2bbc8a;
+  text-decoration: none;
+}
+#footer nav a:hover {
+  text-decoration: underline;
+}
+#footer nav a:first-child {
+  border-left: none;
+}

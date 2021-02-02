@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Base64与ArrayBuffer相互转换</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Base64与ArrayBuffer相互转换</h1><div class="meta"><time>2021-01-14</time><div class="tags"><a class="tag-link" href="/tags/Base64/">Base64 </a><a class="tag-link" href="/tags/ArrayBuffer/">ArrayBuffer </a><a class="tag-link" href="/tags/Uint8Array/">Uint8Array </a></div></div><article id="markdown"><h2 id="通过window-atob和Uint8Array方法"><a href="#通过window-atob和Uint8Array方法" class="headerlink" title="通过window.atob和Uint8Array方法"></a>通过<code>window.atob</code>和<code>Uint8Array</code>方法</h2><pre><code class="js">
+const base64 = &quot;xmE0AcdhNAHHYTQB&quot;;
+const raw = window.atob(base64);
+
+const uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+uint8Array.forEach((_,i)=&gt;uint8Array[i] = raw.charCodeAt(i));
+
+const arrayBuffer = uint8Array.buffer;
+
+console.log(uint8Array);
+console.log(arrayBuffer);
+
+
+</code></pre>
+<p><strong>注意：nodejs无atob方法</strong></p>
+<h2 id="通过Uint8Array方法"><a href="#通过Uint8Array方法" class="headerlink" title="通过Uint8Array方法"></a>通过<code>Uint8Array</code>方法</h2><pre><code class="js">
+/*
+ * base64-arraybuffer
+ * https://github.com/niklasvh/base64-arraybuffer
+ *
+ * Copyright (c) 2012 Niklas von Hertzen
+ * Licensed under the MIT license.
+ */
+(function(){
+  &quot;use strict&quot;;
+
+  var chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
+
+  // Use a lookup table to find the index.
+  var lookup = new Uint8Array(256);
+  for (var i = 0; i &lt; chars.length; i++) {
+    lookup[chars.charCodeAt(i)] = i;
+  }
+
+  exports.encode = function(arraybuffer) {
+    var bytes = new Uint8Array(arraybuffer),
+    i, len = bytes.length, base64 = &quot;&quot;;
+
+    for (i = 0; i &lt; len; i+=3) {
+      base64 += chars[bytes[i] &gt;&gt; 2];
+      base64 += chars[((bytes[i] &amp; 3) &lt;&lt; 4) | (bytes[i + 1] &gt;&gt; 4)];
+      base64 += chars[((bytes[i + 1] &amp; 15) &lt;&lt; 2) | (bytes[i + 2] &gt;&gt; 6)];
+      base64 += chars[bytes[i + 2] &amp; 63];
+    }
+
+    if ((len % 3) === 2) {
+      base64 = base64.substring(0, base64.length - 1) + &quot;=&quot;;
+    } else if (len % 3 === 1) {
+      base64 = base64.substring(0, base64.length - 2) + &quot;==&quot;;
+    }
+
+    return base64;
+  };
+
+  exports.decode =  function(base64) {
+    var bufferLength = base64.length * 0.75,
+    len = base64.length, i, p = 0,
+    encoded1, encoded2, encoded3, encoded4;
+
+    if (base64[base64.length - 1] === &quot;=&quot;) {
+      bufferLength--;
+      if (base64[base64.length - 2] === &quot;=&quot;) {
+        bufferLength--;
+      }
+    }
+
+    var arraybuffer = new ArrayBuffer(bufferLength),
+    bytes = new Uint8Array(arraybuffer);
+
+    for (i = 0; i &lt; len; i+=4) {
+      encoded1 = lookup[base64.charCodeAt(i)];
+      encoded2 = lookup[base64.charCodeAt(i+1)];
+      encoded3 = lookup[base64.charCodeAt(i+2)];
+      encoded4 = lookup[base64.charCodeAt(i+3)];
+
+      bytes[p++] = (encoded1 &lt;&lt; 2) | (encoded2 &gt;&gt; 4);
+      bytes[p++] = ((encoded2 &amp; 15) &lt;&lt; 4) | (encoded3 &gt;&gt; 2);
+      bytes[p++] = ((encoded3 &amp; 3) &lt;&lt; 6) | (encoded4 &amp; 63);
+    }
+
+    return arraybuffer;
+  };
+})();
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

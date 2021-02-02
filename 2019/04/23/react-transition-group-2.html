@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>React-transition-group 之异步路由动画</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>React-transition-group 之异步路由动画</h1><div class="meta"><time>2019-04-23</time><div class="tags"><a class="tag-link" href="/tags/React/">React </a><a class="tag-link" href="/tags/Animation/">Animation </a></div></div><article id="markdown"><p>在使用React-transition-group做路由动画的时候，经常因为code spliting导致动画无效。原因
+多半是由于路由钩子动画执行的时候组件并未加载到。所以观察DOM结构中并未发现react动画相关的
+钩子class。这就需要我们在做代码拆分的时候做写细节处理。</p>
+<pre><code class="jsx">// route.js
+import React, { Suspense } from &quot;react&quot;;
+import ReactDOM from &#39;react-dom&#39;;
+import { HashRouter as Router, Route, Switch } from &quot;react-router-dom&quot;;
+import { TransitionGroup, CSSTransition } from &quot;react-transition-group&quot;;
+import &#39;./app.css&#39;;
+
+// 代码code spliting
+const Index = React.lazy(() =&gt; import(&quot;./pages/index&quot;));
+const About = React.lazy(() =&gt; import(&quot;./pages/about&quot;));
+const Home = React.lazy(() =&gt; import(&quot;./pages/home&quot;));
+
+// 注意：这里的div为外层动画的挂载点。
+// page内部的节点异步挂载
+const wrap = WrappedComponent =&gt; () =&gt; (
+  &lt;div className=&quot;page&quot;&gt;
+    &lt;Suspense fallback={null}&gt;
+      &lt;WrappedComponent /&gt;
+    &lt;/Suspense&gt;
+  &lt;/div&gt;
+);
+
+function App() {
+  return (
+    &lt;Router&gt;
+      &lt;Route
+        render={({ location }) =&gt; (
+          &lt;TransitionGroup&gt;
+            &lt;CSSTransition
+              key={location.pathname}
+              classNames=&quot;page&quot;
+              appear
+              timeout={850}
+            &gt;
+              &lt;Switch location={location}&gt;
+                &lt;Route exact path=&quot;/&quot; component={wrap(Index)} /&gt;
+                &lt;Route exact path=&quot;/home&quot; component={wrap(Home)} /&gt;
+                &lt;Route exact path=&quot;/about&quot; component={wrap(About)} /&gt;
+              &lt;/Switch&gt;
+            &lt;/CSSTransition&gt;
+          &lt;/TransitionGroup&gt;
+        )}
+      /&gt;
+    &lt;/Router&gt;
+  );
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));
+
+</code></pre>
+<p>下面是三个被拆分的示例组件代码</p>
+<pre><code class="jsx">// index.js
+import React, { Component } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+export default class Index extends Component {
+  render() {
+    return (
+      &lt;div
+        className=&quot;index&quot;
+        style={{
+          backgroundColor: "rgb(255,80,61)"
+        }}
+      &gt;
+        &lt;h1&gt;Index Page&lt;/h1&gt;
+        &lt;p&gt;
+          &lt;Link to=&quot;/&quot;&gt;index&lt;/Link&gt;
+          &lt;Link to=&quot;/home&quot;&gt;home&lt;/Link&gt;
+          &lt;Link to=&quot;/about&quot;&gt;about&lt;/Link&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+</code></pre>
+<pre><code class="jsx">// home.js
+import React, { Component } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+export default class Index extends Component {
+  render() {
+    return (
+      &lt;div
+        className=&quot;home&quot;
+        style={{
+          backgroundColor: "rgb(78,133,255)"
+        }}
+      &gt;
+        &lt;h1&gt;Home Page&lt;/h1&gt;
+        &lt;p&gt;
+          &lt;Link to=&quot;/&quot;&gt;index&lt;/Link&gt;
+          &lt;Link to=&quot;/home&quot;&gt;home&lt;/Link&gt;
+          &lt;Link to=&quot;/about&quot;&gt;about&lt;/Link&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+
+</code></pre>
+<pre><code class="jsx">// about.js
+import React, { Component } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+export default class Index extends Component {
+  render() {
+    return (
+      &lt;div
+        className=&quot;about&quot;
+        style={{
+          backgroundColor: "rgb(0,163,58)"
+        }}
+      &gt;
+        &lt;h1&gt;About Page&lt;/h1&gt;
+        &lt;p&gt;
+          &lt;Link to=&quot;/&quot;&gt;index&lt;/Link&gt;
+          &lt;Link to=&quot;/home&quot;&gt;home&lt;/Link&gt;
+          &lt;Link to=&quot;/about&quot;&gt;about&lt;/Link&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+
+</code></pre>
+<p>样式文件</p>
+<pre><code class="css">/*app.css */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-appear {
+  opacity: 0;
+  top: 20px;
+}
+
+.page-appear-active {
+  opacity: 1;
+  top: 0;
+  transition: opacity 550ms ease-in, top 550ms ease-in;
+}
+
+.page-enter {
+  opacity: 0;
+  top: 20px;
+}
+
+.page-enter-active {
+  opacity: 1;
+  top: 0;
+  transition: opacity 550ms ease-in 300ms, top 550ms ease-in 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  top: 0;
+}
+
+.page-exit-active {
+  opacity: 0;
+  top: 20px;
+  transition: opacity 250ms ease, top 250ms ease;
+}
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

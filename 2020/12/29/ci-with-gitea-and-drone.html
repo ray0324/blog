@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>使用Gitea和Drone搭建持续集成环境</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>使用Gitea和Drone搭建持续集成环境</h1><div class="meta"><time>2020-12-29</time><div class="tags"><a class="tag-link" href="/tags/Gitea/">Gitea </a><a class="tag-link" href="/tags/Drone/">Drone </a><a class="tag-link" href="/tags/CI/">CI </a></div></div><article id="markdown"><h2 id="启动Gitea"><a href="#启动Gitea" class="headerlink" title="启动Gitea"></a>启动Gitea</h2><pre><code class="bash">docker run -d --name=gitea -p 8022:22 -p 8000:3000 -v /srv/docker/gitea:/data gitea/gitea:latest
+</code></pre>
+<p><strong>注意: Gitea放在docker-compose配置中启动容易报错，这里单独启动!!!</strong></p>
+<h2 id="Drone"><a href="#Drone" class="headerlink" title="Drone"></a>Drone</h2><ol>
+<li>安装docker环境</li>
+<li>安装docker-compose</li>
+<li>按照以下配置文件启动</li>
+</ol>
+<p><strong>注意:环境变量中不要有空格 否则可能启动失败!!!</strong></p>
+<pre><code class="yml">#docker-compose.yml
+version: &quot;3&quot;
+services:
+  drone-server:
+    image: drone/drone:latest
+    ports:
+      - &quot;3000:80&quot;
+    volumes:
+      - /srv/docker/drone:/var/lib/drone/
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_SERVER_HOST=172.27.2.157:3000
+      - DRONE_DEBUG=true
+      - DRONE_GIT_ALWAYS_AUTH=false
+      - DRONE_GITEA_SERVER=http://172.27.2.157:8000
+      - DRONE_GITEA_CLIENT_ID=a7ef0e98-0a74-4a22-b52e-9b3dbfe612a0
+      - DRONE_GITEA_CLIENT_SECRET=w4kRYl4Pj-lNVFGhbzbNo3GQPsBs1buNE20pFOPYytw=
+      - DRONE_PROVIDER=gogs
+      - DRONE_DATABASE_DATASOURCE=/var/lib/drone/drone.sqlite
+      - DRONE_DATABASE_DRIVER=sqlite3
+      - DRONE_SERVER_PROTO=http
+      - DRONE_RPC_SECRET=ALQU2M0KdptXUdTPKcEw
+      - DRONE_USER_CREATE=username:ray0324,machine:false,admin:true
+  drone-agent:
+    image: drone/agent:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - drone-server
+    environment:
+      - DRONE_RPC_SERVER=http://172.27.2.157:3000
+      - DRONE_RPC_SECRET=ALQU2M0KdptXUdTPKcEw
+      - DRONE_DEBUG=true
+
+</code></pre>
+<p>其中</p>
+<pre><code class="yml">  - DRONE_GITEA_SERVER=http://172.27.2.157:8000
+  - DRONE_GITEA_CLIENT_ID=a7ef0e98-0a74-4a22-b52e-9b3dbfe612a0
+  - DRONE_GITEA_CLIENT_SECRET=w4kRYl4Pj-lNVFGhbzbNo3GQPsBs1buNE20pFOPYytw=
+</code></pre>
+<p>这三个变量需要在Gitea中配置Oauth生成。</p>
+<h3 id="Gogs"><a href="#Gogs" class="headerlink" title="Gogs"></a>Gogs</h3><p>Gogs的配置类似，由于Gogs目前不支持OAuth访问Drone主页使用Gogs的账户进行登录即可自动拉取当前
+账户的仓库信息。</p>
+<pre><code>  - DRONE_GOGS=true
+  - DRONE_GOGS_SKIP_VERIFY=false
+  - DRONE_GOGS_SERVER=http://172.27.2.157:8000
+</code></pre></article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

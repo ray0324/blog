@@ -1,0 +1,62 @@
+#post-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  clear: both;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+#post-menu nav {
+  text-align: right;
+}
+#post-menu nav a {
+  line-height: 13px;
+  font-size: 13px;
+  display: inline-block;
+  border-left: 1px dotted #888;
+  margin-left: 10px;
+  padding-left: 10px;
+  color: #2bbc8a;
+}
+#post-menu nav a:first-child {
+  border-left: none;
+}
+#toc {
+  padding-top: 20px;
+}
+#toc a {
+  margin-left: 5px;
+  color: inherit;
+  text-decoration: none;
+}
+#toc a:hover {
+  color: #2bbc8a;
+}
+#toc ol {
+  list-style: none;
+}
+#toc ol li {
+  text-align: right;
+  line-height: 1.8;
+}
+#toc .toc-level-2 {
+  font-size: 0.8rem;
+  color: #555;
+}
+#toc .toc-level-2:before {
+  content: "#";
+  color: #2bbc8a;
+}
+#toc .toc-level-3 {
+  font-size: 0.7rem;
+  color: #888;
+}
+#toc .toc-level-4 {
+  font-size: 0.5rem;
+  color: #666;
+}
+#toc .toc-level-1,
+#toc .toc-level-5,
+#toc .toc-level-6 {
+  display: none;
+}

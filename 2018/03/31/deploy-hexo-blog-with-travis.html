@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>使用Travis CI 自动部署Github Pages</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>使用Travis CI 自动部署Github Pages</h1><div class="meta"><time>2018-03-31</time><div class="tags"><a class="tag-link" href="/tags/Travis/">Travis </a><a class="tag-link" href="/tags/Github/">Github </a></div></div><article id="markdown"><p>工作中经常会遇到一些比较棘手的问题，解决问题后记录一下日志，以备下次遇到同样的问题时提供参考查询。很多人选择在博客园写自己的文章，也有部分程序员喜欢自己搭建独立博客。</p>
+<p>搭建一个独立的博客是一件比较cool的事情。很多人选择购买一个云服务器，然后自己开发一套博客程序，或者使用<a href="https://cn.wordpress.org/" target="_blank" rel="noopener">WordPress</a>或者<a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>等开源博客程序部署。但如果我们的博客仅仅是写写文章做做记录的话。<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>结合<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>构建静态博客是一个很不错的选择，这里记录一下自己搭建Github博客的流程。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li>使用Hexo创建静态博客</li>
+<li>用Travis CI 进行自动部署到<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>上</li>
+</ol>
+<h2 id="Github-仓库创建"><a href="#Github-仓库创建" class="headerlink" title="Github 仓库创建"></a>Github 仓库创建</h2><h3 id="一、创建发布仓库"><a href="#一、创建发布仓库" class="headerlink" title="一、创建发布仓库"></a>一、创建发布仓库</h3><p>登录自己的<a href="https://github.com/" target="_blank" rel="noopener">Github</a>账号，创建一个与自己用户名一致的仓库。如我的用户名是ray0324，我创建的仓库则是<a href="https://github.com/ray0324/ray0324.github.io" target="_blank" rel="noopener">ray0324.github.io</a>在这个仓库，用来存放我们的静态博客(当然也可以创建其他仓库名称，然后创建gh-pages分支，但这里建议单独创建一个博客发布仓库)。我们最终生成的静态博客文件会存放在这个仓库中。</p>
+<h3 id="二、创建博客源码仓库"><a href="#二、创建博客源码仓库" class="headerlink" title="二、创建博客源码仓库"></a>二、创建博客源码仓库</h3><p>这个仓库则用来存储我们的<code>hexo</code>项目以及博客<code>Markdown</code>源码，当然 我们可以之创建一个仓库，源码放在<code>master</code>分支上，然后构建的代码存放在<code>gh-pages</code>分支上。这里不建议。因为那样很容易搞混。我这里创建的是<a href="https://github.com/ray0324/blog" target="_blank" rel="noopener">blog</a>仓库。</p>
+<h3 id="三、写Hexo博客"><a href="#三、写Hexo博客" class="headerlink" title="三、写Hexo博客"></a>三、写Hexo博客</h3><p>这里我就不详细介绍Hexo的使用了，有需求参见<a href="https://hexo.io/docs/" target="_blank" rel="noopener">Hexo文档</a>。</p>
+<pre><code class="bash">$ mkdir blog
+$ cd blog
+$ npm init -y
+$ npm install
+</code></pre>
+<h3 id="四、将静态博客源码推送到远端源码仓库"><a href="#四、将静态博客源码推送到远端源码仓库" class="headerlink" title="四、将静态博客源码推送到远端源码仓库"></a>四、将静态博客源码推送到远端源码仓库</h3><p>在博客目录<code>blog</code>下进行初<code>git</code>始化:</p>
+<pre><code class="bash">git init
+git remote add origin git@github.com:ray0324/blog.git
+git commit -m &#39;init hexo blog&#39;
+git push -u origin master
+</code></pre>
+<p>这样我们就将本地代码推送到我们的博客仓库了。</p>
+<h2 id="使用Travis-CI进行自动化部署"><a href="#使用Travis-CI进行自动化部署" class="headerlink" title="使用Travis CI进行自动化部署"></a>使用Travis CI进行自动化部署</h2><h3 id="一、注册使用Github账号注册Travis-CI账号。"><a href="#一、注册使用Github账号注册Travis-CI账号。" class="headerlink" title="一、注册使用Github账号注册Travis CI账号。"></a>一、注册使用Github账号注册Travis CI账号。</h3><p>我们直接使用github账号授权登录Travis CI</p>
+<p><img src="/assets/images/2018-03-31/1.jpg" alt="login"></p>
+<h3 id="二、申请一个Travis专用的Github-Token供Travis使用"><a href="#二、申请一个Travis专用的Github-Token供Travis使用" class="headerlink" title="二、申请一个Travis专用的Github Token供Travis使用"></a>二、申请一个Travis专用的Github Token供Travis使用</h3><p>如图，创建一个专用token 注意权限分配。小白的话除了删除权限 其余的都勾上吧。</p>
+<p><img src="/assets/images/2018-03-31/5.jpg" alt="login"></p>
+<p>创建的token值注意先保存在本地用记事本记录下来。这个token只有在创建的时候我们才能看到，需要保存下，否则下次只能更新才能看到。</p>
+<h3 id="三、选择我们的源码项目，作为构建目标"><a href="#三、选择我们的源码项目，作为构建目标" class="headerlink" title="三、选择我们的源码项目，作为构建目标"></a>三、选择我们的源码项目，作为构建目标</h3><p>这里我选择自己的blog源码仓库</p>
+<p><img src="/assets/images/2018-03-31/2.jpg" alt="login"></p>
+<p>单击项目右侧的设置按钮，对仓库进行设置</p>
+<p><img src="/assets/images/2018-03-31/3.jpg" alt="login"></p>
+<p>配置如下，这里重点注意需要配置一个全局变量 用来存储Github Token，这里命名<code>GH_TOKEN</code></p>
+<p><img src="/assets/images/2018-03-31/4.jpg" alt="login"></p>
+<h3 id="四、创建Travis配置文件"><a href="#四、创建Travis配置文件" class="headerlink" title="四、创建Travis配置文件"></a>四、创建Travis配置文件</h3><p>下面是我配置的<code>.travis.yml</code>文件，这里，可以直接复制粘贴进行使用。具体的含义请自行百度，</p>
+<pre><code class="yml">language: node_js
+node_js: stable
+# S: Build Lifecycle
+install:
+  - npm install
+#before_script:
+ # - npm install -g gulp
+script:
+  - hexo g
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name &quot;ray0324&quot;
+  - git config user.email &quot;ray0324@foxmail.com&quot;
+  - git add .
+  - git commit -m &quot;Update docs&quot;
+  - git push --force --quiet &quot;https://${GH_TOKEN}@${GH_REF}&quot; master:master
+# E: Build LifeCycle
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: github.com/ray0324/ray0324.github.io.git
+</code></pre>
+<p>我这里大致解释一下流程，这里是告诉Travis</p>
+<ol>
+<li>语言为nodejs，版本为<code>stable</code></li>
+<li>构建第一步，在仓库中进行<code>npm install</code>安装博客的<code>npm</code>包</li>
+<li>安装完成后执行 <code>hexo g</code>命令 生成静态博客</li>
+<li>分布执行after_script中的操作最后将生成的代码发布到我们制定的Github博客仓库，这里仓库的地址为<code>GH_REF</code>即最后的global变量中的<code>GH_REF</code>.</li>
+</ol>
+<p><em>注：<code>git push --force --quiet &quot;https://${GH_TOKEN}@${GH_REF}&quot; master:master</code>中<code>GH_TOKEN</code>和<code>GH_REF</code>分别为我们已经配置的Github Token以及我们要发布的目标仓库，二者均为全局变量，其中GH_TOKEN我们不能对外公布，所以要配置在Travis的项目管理平台</em></p>
+<p>配置文件创建完成后我们将代码同步push到blog仓库进行更新</p>
+<h3 id="五、同步代码"><a href="#五、同步代码" class="headerlink" title="五、同步代码"></a>五、同步代码</h3><p>完成上述配置后，<code>hexo</code>和<code>travis</code>环境就搭建好了，我们再_post下写好博文，将代码push到github仓库，Travis就已经开始为我们同步代码了。</p>
+<p><img src="/assets/images/2018-03-31/6.jpg" alt="sync"></p>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

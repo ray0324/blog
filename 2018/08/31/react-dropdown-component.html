@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>React下拉菜单组件设计</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>React下拉菜单组件设计</h1><div class="meta"><time>2018-09-01</time><div class="tags"><a class="tag-link" href="/tags/React/">React </a></div></div><article id="markdown"><p>React Dropdown下拉组件是一个比较典型的应用。通常在设计组件的时只关注组件内部的事件传递和事件处理，遇到需要在全局绑定事件处理函数的时候，并不知道该怎么处理，下拉菜单组件就是一个典型的例子，当展开菜单后，需要在全局注册一个<code>click</code>事件，当点击组件以外的区域时，需要折叠该下拉菜单。这是一个比较典型的应用案例。</p>
+<h2 id="组件源码"><a href="#组件源码" class="headerlink" title="组件源码"></a>组件源码</h2><pre><code class="jsx">import React from &#39;react&#39;;
+import &#39;./style.css&#39;;
+
+class Dropdown extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      displayMenu: false,
+    };
+    this.showDropdownMenu = this.showDropdownMenu.bind(this);
+    this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
+  }
+
+  showDropdownMenu(event) {
+    event.preventDefault();
+    this.setState({ displayMenu: true }, () =&gt; {
+      // 在DOM根节点上为组件绑定事件处理函数
+      document.addEventListener(&#39;click&#39;, this.hideDropdownMenu);
+    });
+  }
+
+  hideDropdownMenu() {
+    // 在这里解绑组件在DOM根节点上绑定的事件
+    this.setState({ displayMenu: false }, () =&gt; {
+      // 注意事件的绑定解绑不能传递匿名函数
+      document.removeEventListener(&#39;click&#39;, this.hideDropdownMenu);
+    });
+  }
+
+  render() {
+    return (
+      &lt;div className=&quot;dropdown&quot;&gt;
+        &lt;div className=&quot;button&quot; onClick={this.showDropdownMenu}&gt; My Setting &lt;/div&gt;
+        {
+          this.state.displayMenu ? (
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a className=&quot;active&quot; href=&quot;#Create Page&quot;&gt;Create Page&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Manage Pages&quot;&gt;Manage Pages&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Create Ads&quot;&gt;Create Ads&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Manage Ads&quot;&gt;Manage Ads&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Activity Logs&quot;&gt;Activity Logs&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Setting&quot;&gt;Setting&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#Log Out&quot;&gt;Log Out&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          ) : null
+        }
+      &lt;/div&gt;
+
+    );
+  }
+}
+export default Dropdown;
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

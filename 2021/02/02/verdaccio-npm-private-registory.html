@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>利用Verdaccio搭建NPM私有仓库</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>利用Verdaccio搭建NPM私有仓库</h1><div class="meta"><time>2021-02-02</time><div class="tags"><a class="tag-link" href="/tags/Verdaccio/">Verdaccio </a><a class="tag-link" href="/tags/Sinopia/">Sinopia </a></div></div><article id="markdown"><h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ol>
+<li>服务器端用内网连接，npm仓库无法下载</li>
+<li>私有npm包，不想发布到公网</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="bash">npm install -g verdaccio
+
+
+</code></pre>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre><code class="bash">verdaccio
+</code></pre>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><pre><code class="yaml">#
+# This is the default config file. It allows all users to do anything,
+# so don&#39;t use it on production systems.
+#
+# Look here for more config file examples:
+# https://github.com/verdaccio/verdaccio/tree/master/conf
+#
+
+listen: 0.0.0.0:4873
+
+# path to a directory with all packages
+storage: /root/.local/share/verdaccio/storage
+# path to a directory with plugins to include
+plugins: ./plugins
+
+web:
+  title: Verdaccio
+  # comment out to disable gravatar support
+  # gravatar: false
+  # by default packages are ordercer ascendant (asc|desc)
+  # sort_packages: asc
+  # convert your UI to the dark side
+  # darkMode: true
+
+# translate your registry, api i18n not available yet
+# i18n:
+# list of the available translations https://github.com/verdaccio/ui/tree/master/i18n/translations
+#   web: en-US
+
+auth:
+  htpasswd:
+    file: ./htpasswd
+    # Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.
+    # You can set this to -1 to disable registration.
+    # max_users: 1000
+
+# a list of other known repositories we can talk to
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+  taobao:
+    url: https://registry.npm.taobao.org/
+packages:
+  &#39;@*/*&#39;:
+    # scoped packages
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: taobao
+
+  &#39;**&#39;:
+    # allow all users (including non-authenticated users) to read and
+    # publish all packages
+    #
+    # you can specify usernames/groupnames (depending on your auth plugin)
+    # and three keywords: &quot;$all&quot;, &quot;$anonymous&quot;, &quot;$authenticated&quot;
+    access: $all
+
+    # allow all known users to publish/publish packages
+    # (anyone can register by default, remember?)
+    publish: $authenticated
+    unpublish: $authenticated
+
+    # if package is not available locally, proxy requests to &#39;npmjs&#39; registry
+    proxy: taobao
+
+# You can specify HTTP/1.1 server keep alive timeout in seconds for incoming connections.
+# A value of 0 makes the http server behave similarly to Node.js versions prior to 8.0.0, which did not have a keep-alive timeout.
+# WORKAROUND: Through given configuration you can workaround following issue https://github.com/verdaccio/verdaccio/issues/301. Set to 0 in case 60 is not enough.
+server:
+  keepAliveTimeout: 60
+
+middlewares:
+  audit:
+    enabled: true
+
+# log settings
+logs:
+  - { type: stdout, format: pretty, level: http }
+  #- {type: file, path: verdaccio.log, level: info}
+#experiments:
+#  # support for npm token command
+#  token: false
+#  # support for the new v1 search endpoint, functional by incomplete read more on ticket 1732
+#  search: false
+#  # disable writing body size to logs, read more on ticket 1912
+#  bytesin_off: false
+
+# This affect the web and api (not developed yet)
+#i18n:
+#web: zh-CN
+
+
+</code></pre>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><pre><code class="bash"># 使用pm2启动服务
+pm2 start `which verdaccio`
+</code></pre>
+<h2 id="配置NPM源码"><a href="#配置NPM源码" class="headerlink" title="配置NPM源码"></a>配置NPM源码</h2><pre><code class="bash"># 使用nrm管理npm源
+npm i -g nrm
+
+# 添加源
+nrm add local http://localhost:4873/
+# 使用
+nrm use local
+
+</code></pre>
+<h2 id="使用NPM"><a href="#使用NPM" class="headerlink" title="使用NPM"></a>使用NPM</h2><pre><code class="bash">#创建用户
+npm adduser
+
+#发布包
+npm publish
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

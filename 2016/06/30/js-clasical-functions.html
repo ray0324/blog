@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Javascript中经典自定义函数</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Javascript中经典自定义函数</h1><div class="meta"><time>2016-06-30</time><div class="tags"><a class="tag-link" href="/tags/JavaScript/">JavaScript </a></div></div><article id="markdown"><h2 id="日期格式化函数"><a href="#日期格式化函数" class="headerlink" title="日期格式化函数"></a>日期格式化函数</h2><pre><code class="js">
+Date.prototype.Format = function(fmt){
+  var o = {
+    &quot;m+&quot; : this.getMonth()+1,  //月份
+    &quot;d+&quot; : this.getDate(),     //日
+    &quot;h+&quot; : this.getHours(),    //小时
+    &quot;i+&quot; : this.getMinutes(),  //分
+    &quot;s+&quot; : this.getSeconds(),  //秒
+  };
+  if(/(y+)/.test(fmt)){
+      fmt = fmt.replace(RegExp.$1, (this.getFullYear()+&quot;&quot;).substr(4 - RegExp.$1.length));
+  }
+  for(var k in o){
+      if(new RegExp(&quot;(&quot;+ k +&quot;)&quot;).test(fmt)){
+          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : ((&quot;00&quot;+ o[k]).substr((&quot;&quot;+ o[k]).length)));
+      }
+  }
+  return fmt;
+}
+
+</code></pre>
+<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><pre><code class="html">
+&lt;!-- 模版代码 --&gt;
+&lt;script type=&quot;text/html&quot; id=&quot;tpl&quot;&gt;
+  &lt;ul&gt;
+    &lt;% for ( var i = 0; i &lt; users.length; i++ ) { %&gt;
+      &lt;li&gt;&lt;a href=&quot;&lt;%=users[i].url%&gt;&quot;&gt;&lt;%=users[i].name%&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;% } %&gt;
+    &lt;/ul&gt;
+&lt;/script&gt;
+
+&lt;!-- 模版引擎仅用一个函数实现 --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  function template(id,obj){
+    var html=document.getElementById(id).innerHTML;
+    var result=&quot;var p=[]; with(obj){p.push(&#39;&quot;
+        +html.replace(/[\r\n\t]/g,&quot;&quot;)
+          .replace(/&lt;%=(.*?)%&gt;/g,&quot;&#39;);p.push($1);p.push(&#39;&quot;)
+          .replace(/&lt;%/g,&quot;&#39;);&quot;)
+          .replace(/%&gt;/g,&quot;p.push(&#39;&quot;)
+        +&quot; &#39;);}return p.join(&#39;&#39;);&quot;;
+    var fn=new Function(&quot;obj&quot;,result);
+    return fn(data);
+  }
+&lt;/script&gt;
+
+&lt;!-- 使用方法 --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  var data ={users:[{url:2,name:&#39;ray&#39;},{url:1,name:&#39;ray0324&#39;}]};
+  var str = template(&#39;tpl&#39;,data);
+  document.getElementById(&#39;wrap&#39;).innerHTML =str;
+&lt;/script&gt;
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

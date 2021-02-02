@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>银行卡号校验(Luhn校验)</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>银行卡号校验(Luhn校验)</h1><div class="meta"><time>2020-05-15</time><div class="tags"><a class="tag-link" href="/tags/Luhn/">Luhn </a></div></div><article id="markdown"><p>常用的银行卡号码采用<strong>Luhn算法(Luhn algorithm)</strong>进行校验，算法具体参考百度百科。
+这里给出js版本的实现：</p>
+<pre><code class="js">function luhnValidate(num) {
+  if (!/^\d+$/.test(num)) return false;
+  const arr = num.split(&#39;&#39;).reverse().map(i =&gt; parseInt(i));
+  const sum = arr.reduce((prev, cur, i) =&gt; {
+    // 偶数位
+    if (i % 2 === 1) {
+      return prev + Math.floor((cur * 2) / 10) + ((cur * 2) % 10);
+    }
+    // 奇数位
+    return prev + cur;
+  }, 0);
+
+  return sum % 10 === 0;
+}
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>身份证号码校验</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>身份证号码校验</h1><div class="meta"><time>2020-05-15</time><div class="tags"><a class="tag-link" href="/tags/idno/">idno </a><a class="tag-link" href="/tags/validate/">validate </a></div></div><article id="markdown"><p>公民身份号码的校验遵循<strong>GB11643-1999</strong>标准</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>身份号码(18位)包含由17位<strong>本体码(master number)</strong>和1位<strong>校验码(check number)</strong>组成。
+具体校验算法参考<strong>GB11643-1999</strong>标准</p>
+<h2 id="18位身份证号码校验算法"><a href="#18位身份证号码校验算法" class="headerlink" title="18位身份证号码校验算法"></a>18位身份证号码校验算法</h2><pre><code class="js">function isIdNo18(num) {
+  // 这里只做18位身份证号码校验
+  if (num.length !== 18) {
+    return false;
+  }
+
+  const arr = num.split(&quot;&quot;);
+  // 将身份证末尾的x换成10
+  arr[17] = arr[17].toLowerCase() === &quot;x&quot; ? 10 : arr[17];
+
+  // 求和
+  const sum = arr.reduceRight((prev, cur, i) =&gt; {
+    return prev + (Math.pow(2, 17 - i) % 11) * Number(cur);
+  }, 0);
+
+  return sum % 11 === 1;
+}
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

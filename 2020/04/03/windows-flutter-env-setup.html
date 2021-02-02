@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Windows下Flutter环境搭建</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Windows下Flutter环境搭建</h1><div class="meta"><time>2020-04-03</time><div class="tags"><a class="tag-link" href="/tags/Flutter/">Flutter </a></div></div><article id="markdown"><h2 id="一、下载-Android-Studio"><a href="#一、下载-Android-Studio" class="headerlink" title="一、下载 Android Studio"></a>一、下载 Android Studio</h2><ol>
+<li>下载安装包</li>
+</ol>
+<p><em>注意：<strong>建议</strong>下载<strong>免安装</strong>版本的，这个版本的压缩包里面自带<code>jre</code>，下载完成后解压即
+可,电脑已安装过<code>jdk</code>或者有<code>jre</code>环境的请自行选择。</em></p>
+<p><a href="https://developer.android.google.cn/studio/#downloads" target="_blank" rel="noopener">Android Studio 官网下载链接</a></p>
+<ol start="2">
+<li><p>解压并拷贝到电脑程序目录，我这里新建了个目录<code>D:\Soft\Android</code>,并将Android Studio
+拷贝到该目录下了。</p>
+</li>
+<li><p>新建环境变量,并将java的执行应用程序路径添加到path里</p>
+</li>
+</ol>
+<pre><code class="bash"># 新建环境变量:
+JAVA_HOME: D:\Soft\Android\android-studio\jre
+CLASSPATH: %JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
+
+# 添加到PATH中的路径:
+PATH: %JAVA_HOME%\bin
+
+</code></pre>
+<h2 id="二、下载Dart-SDK"><a href="#二、下载Dart-SDK" class="headerlink" title="二、下载Dart SDK"></a>二、下载Dart SDK</h2><p>以下提供了两个下载路径，下载安装向导 打开安装向导后直接点<code>下一步</code>可以傻瓜式引导下载安装。
+但是在安装过程中可能会遇到sdk包链接被墙导致长时间无法下载的情况。
+这里建议直接下载SDK的zip压缩包。解压到软件安装路径下，然后配置环境变量。</p>
+<pre><code class="bash"># 新建环境变量:
+DART_SDK: C:\Program Files\Dart\dart-sdk
+# 添加到PATH中的路径:
+PATH: C:\Program Files\Dart\dart-sdk\bin
+</code></pre>
+<p><a href="https://gekorm.com/dart-windows/" target="_blank" rel="noopener">Dart安装向导exe</a></p>
+<p><a href="https://dart.dev/tools/sdk/archive" target="_blank" rel="noopener">Dart SDK zip包</a></p>
+<h2 id="三、安装Flutter-SDK"><a href="#三、安装Flutter-SDK" class="headerlink" title="三、安装Flutter SDK"></a>三、安装Flutter SDK</h2><pre><code class="bash">   #直接从flutter仓库克隆 如果github下载过慢 可以选择从过来镜像下载
+   # 这里注意 由于github上克隆速度很慢建议用gitee镜像
+   # gitee镜像地址 https://gitee.com/dengsgo/flutter.git
+   git clone -b stable https://github.com/flutter/flutter.git
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

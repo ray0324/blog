@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Windows 安装MySQL 8</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Windows 安装MySQL 8</h1><div class="meta"><time>2019-04-02</time><div class="tags"><a class="tag-link" href="/tags/MySQL/">MySQL </a></div></div><article id="markdown"><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">MySQL下载链接</a></p>
+<ol>
+<li>下载后解压文件拷贝到系统盘中，这里放在系统<code>D:\Program Files\mysql-8.0.14-winx64</code>目录
+下了。</li>
+<li>在该目录下创建一个名为data的空文件夹</li>
+</ol>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>将下载<code>bin</code>文件目录配置到环境变量，这里是<code>D:\Program Files\mysql-8.0.14-winx64\bin</code></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>用管理员身份打开cmd</strong></p>
+<pre><code class="bash"># 1. 初始化MySQL环境
+mysqld --initialize --console
+# 此时会有一个初始密码，跟在root@localhost:之后,需要记住
+
+# 2. 安装服务
+mysqld -install
+
+# 3. 启动服务
+net start mysql
+
+# 4. 登录用步骤1生成的密码登录MySQL
+mysql -u root -p
+
+# 5. 进入之后需要自己重新设置密码
+
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;newpassword&#39;;
+
+</code></pre>
+<p><em>注：要使用管理员身份安装，否则可能出现mysql Install/Remove of the Service Denied!错误</em></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><pre><code class="bash"># 1. 停止服务
+net stop mysql
+
+
+# 2.导出整个数据库
+# mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名
+mysqldump -u dbuser -p dbname &gt; dbname.sql
+
+# 3. 导出一个表
+# mysqldump -u 用户名 -p 数据库名 表名&gt; 导出的文件名
+mysqldump -u dbuser -p dbname users&gt; dbname_users.sql
+
+# 4. 导出一个数据库结构
+# -d 没有数据 --add-drop-table 在每个create语句之前增加一个drop table
+mysqldump -u dbuser -p -d --add-drop-table dbname &gt;d:/dbname_db.sql
+
+
+# 5.导入数据库
+# 常用source 命令
+# 进入mysql数据库控制台，如
+# mysql -u root -p
+# mysql&gt;use 数据库
+# 然后使用source命令，后面参数为脚本文件(如这里用到的.sql)
+mysql&gt;source d:/dbname.sql
+
+</code></pre>
+<p><strong>解决 <code>client does not support authentication protocol requested by server;</code></strong></p>
+<p><code>`</code>sql</p>
+<p>– mysql8 之前的版本中加密规则是mysql_native_password
+– 而在mysql8之后,加密规则是caching_sha2_password
+– 把用户密码登录的加密规则还原成mysql_native_password这种加密方式
+ALTER USER ‘root‘@’localhost’ IDENTIFIED BY ‘password’ PASSWORD EXPIRE NEVER;
+ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’;</p>
+<p><code></code></p>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

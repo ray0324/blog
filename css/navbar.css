@@ -1,0 +1,71 @@
+.navbar {
+  font-family: 'Pingfang SC', 'jaf-bernino-sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+  position: absolute;
+  padding-right: 64px;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 65px;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.navbar-fixed {
+  position: fixed;
+}
+.navbar-nav {
+  height: 64px;
+  width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+.navbar-nav .brand {
+  position: absolute;
+  top: 0;
+  left: -84px;
+  display: block;
+  float: left;
+  width: 64px;
+  height: 64px;
+  background: url(../img/logo.png);
+  background-position: center center;
+  background-size: cover;
+}
+.navbar-nav ul {
+  height: 64px;
+  list-style: none;
+}
+.navbar-nav ul li {
+  float: left;
+  margin-right: 20px;
+}
+.navbar-nav ul li a {
+  font-size: 14px;
+  line-height: 64px;
+  display: block;
+  color: #666;
+}
+.navbar-nav ul li a:hover {
+  color: #222;
+}
+.navbar-nav ul li.active a {
+  font-weight: bold;
+  color: #222;
+}
+.navbar-line {
+  height: 1px;
+  background: #f1f1f1;
+}
+.navbar-line .current {
+  width: 700px;
+  margin: 0 auto;
+  position: relative;
+  height: 1px;
+}
+.navbar-line .current .cur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: #000;
+}
