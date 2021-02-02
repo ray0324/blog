@@ -1,3 +1,3 @@
 # Blog
 
-![travis](https://img.shields.io/travis/ray0324/blog.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ray0324/blog/blog-build-and-deploy)
