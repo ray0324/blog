@@ -1,0 +1,25 @@
+name: GitHub Actions Build and Deploy Demo
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: npm install
+      - run: npx hexo g
+      - run: cd ./public
+      - run: git init
+      - run: git config user.name "ray0324"
+      - run: git config user.email "ray0324@foxmail.com"
+      - run: git add .
+      - run: git commit -m "Update docs"
+      - run: git push --force --quiet "https://${GH_TOKEN}@${github.com/ray0324/ray0324.github.io.git}" master:master
