@@ -16,10 +16,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: npm install
       - run: npx hexo g
-      - run: cd ./public
-      - run: git init
-      - run: git config user.name "ray0324"
-      - run: git config user.email "ray0324@foxmail.com"
-      - run: git add .
-      - run: git commit -m "Update docs"
-      - run: git push --force --quiet "https://b8b8460e37f0faff52f5ed1a187c17647bd779cf@github.com/ray0324/ray0324.github.io.git" master:master
+      # - run: cd ./public
+      # - run: git init
+      # - run: git config user.name "ray0324"
+      # - run: git config user.email "ray0324@foxmail.com"
+      # - run: git add .
+      # - run: git commit -m "Update docs"
+      # - run: git push --force --quiet "https://b8b8460e37f0faff52f5ed1a187c17647bd779cf@github.com/ray0324/ray0324.github.io.git" master:master
+
+      - uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          CLEAN: true
