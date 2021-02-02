@@ -15,8 +15,6 @@ tags:
 
 ```bash
 npm install -g verdaccio
-
-
 ```
 ## 启动
 
