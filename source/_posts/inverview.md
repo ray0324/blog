@@ -37,6 +37,7 @@ tags:
 - null, undefined与undeclared的区别？如何在程序检测他们？
 - Promise async/await 的用法?
 - 跨域问题怎么解决?
+- 前端数据缓存?
 - 正则表达式是的作用是什么?js中与正则相关的方法有哪些?
 - GET与POST通讯的区别？
 - cookie、localStorage、sessionStorage区别？
