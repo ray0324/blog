@@ -33,6 +33,8 @@ tags:
 - bind、call、apply的区别？用途？
 - 什么是事件委托，目的，功能，写法?
 - 事件对象Event.target与Event.currenttarget有什么区别?
+- event.stopPropagation与event.stopImmediatePropagation及event.preventDefault的区别?
+- event.stopPropagation与event.stopImmediatePropagation的区别?
 - 什么是闭包，闭包的作用与缺点？
 - null, undefined与undeclared的区别？如何在程序检测他们？
 - Promise async/await 的用法?
