@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Babel7配置说明</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Babel7配置说明</h1><div class="meta"><time>2021-12-31</time><div class="tags"><a class="tag-link" href="/tags/Babel/">Babel </a></div></div><article id="markdown"><p>Babel 是一个工具链,主要用于将 ECMAScript 2015+ 版本的代码转换为向后
+兼容的 JavaScript 语法,以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
+<p>在实际开发中，经常会遇到需要配置 babel 转码的场景,Babel 那么多插件，到底该
+怎么配置？</p>
+<h2 id="如何选择插件"><a href="#如何选择插件" class="headerlink" title="如何选择插件"></a>如何选择插件</h2><p>通常我们只需要配置<code>@babel/preset-env</code>预设来自动加载大部分插件，这个预
+设究竟包含哪些插件呢？babel 官网有详细的罗列:</p>
+<h3 id="TC39-Proposals"><a href="#TC39-Proposals" class="headerlink" title="TC39 Proposals"></a>TC39 Proposals</h3><p><strong><em>注意：如果使用到 TC39 草案中的特性(以上),则需要单独加载相关的 babel 插件。</em></strong></p>
+<ul>
+<li>async-do-expressions</li>
+<li>decorators</li>
+<li>do-expressions</li>
+<li>export-default-from</li>
+<li>function-bind</li>
+<li>function-sent</li>
+<li>partial-application</li>
+<li>pipeline-operator</li>
+<li>private-methods</li>
+<li>record-and-tuple</li>
+<li>throw-expressions</li>
+</ul>
+<h3 id="babel-preset-env-预设包含的插件"><a href="#babel-preset-env-预设包含的插件" class="headerlink" title="@babel/preset-env 预设包含的插件"></a>@babel/preset-env 预设包含的插件</h3><p><strong><em>注意：以下插件在@babel/preset-env 中已经自动集成，无需单独加载</em></strong></p>
+<h4 id="ES2022"><a href="#ES2022" class="headerlink" title="ES2022"></a>ES2022</h4><ul>
+<li>class-properties</li>
+<li>class-static-block</li>
+<li>private-property-in-object</li>
+<li>syntax-top-level-await</li>
+</ul>
+<h4 id="ES2021"><a href="#ES2021" class="headerlink" title="ES2021"></a>ES2021</h4><ul>
+<li>logical-assignment-operators</li>
+<li>numeric-separator</li>
+</ul>
+<h4 id="ES2020"><a href="#ES2020" class="headerlink" title="ES2020"></a>ES2020</h4><ul>
+<li>export-namespace-from</li>
+<li>nullish-coalescing-operator</li>
+<li>optional-chaining</li>
+<li>syntax-bigint</li>
+<li>syntax-dynamic-import</li>
+<li>syntax-import-meta</li>
+</ul>
+<h4 id="ES2019"><a href="#ES2019" class="headerlink" title="ES2019"></a>ES2019</h4><ul>
+<li>optional-catch-binding</li>
+<li>json-strings</li>
+</ul>
+<h4 id="ES2018"><a href="#ES2018" class="headerlink" title="ES2018"></a>ES2018</h4><ul>
+<li>async-generator-functions</li>
+<li>object-rest-spread</li>
+<li>unicode-property-regex</li>
+<li>dotall-regex</li>
+<li>named-capturing-groups-regex</li>
+</ul>
+<h4 id="ES2017"><a href="#ES2017" class="headerlink" title="ES2017"></a>ES2017</h4><ul>
+<li>async-to-generator</li>
+</ul>
+<h4 id="ES2016"><a href="#ES2016" class="headerlink" title="ES2016"></a>ES2016</h4><ul>
+<li>exponentiation-operator</li>
+</ul>
+<h4 id="ES2015"><a href="#ES2015" class="headerlink" title="ES2015"></a>ES2015</h4><ul>
+<li>arrow-functions</li>
+<li>block-scoping</li>
+<li>classes</li>
+<li>computed-properties</li>
+<li>destructuring</li>
+<li>duplicate-keys</li>
+<li>for-of</li>
+<li>function-name</li>
+<li>instanceof</li>
+<li>literals</li>
+<li>new-target</li>
+<li>object-super</li>
+<li>parameters</li>
+<li>shorthand-properties</li>
+<li>spread</li>
+<li>sticky-regex</li>
+<li>template-literals</li>
+<li>typeof-symbol</li>
+<li>unicode-escapes</li>
+<li>unicode-regex</li>
+</ul>
+<h4 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h4><ul>
+<li>property-mutators</li>
+</ul>
+<h4 id="ES3"><a href="#ES3" class="headerlink" title="ES3"></a>ES3</h4><ul>
+<li>member-expression-literals</li>
+<li>property-literals</li>
+<li>reserved-words</li>
+</ul>
+<h3 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="@babel/plugin-transform-runtime"></a>@babel/plugin-transform-runtime</h3><p>这个插件可以抽出转码过程中的一些帮助方法，使之可以在项目中复用
+一般装了这个插件相应的也要安装相应的运行环境一般引入的插件不会造成全局污染
+适合开发公共lib库的时候引入,而对于一般性的项目则无需引入直接配置好prese-env即可</p>
+<pre><code>npm i --save-dev @babel/plugin-transform-runtime
+</code></pre><pre><code class="js">
+// babel配置corejs:false/2/3
+{
+  plugins: [
+    [&quot;@babel/plugin-transform-runtime&quot;,{corejs:false}],
+  ],
+}
+
+// corejs:false - 输出代码
+var _regenerator = _interopRequireDefault(require(&quot;@babel/runtime/regenerator&quot;));
+// corejs:2 - 输出代码
+var _regenerator = _interopRequireDefault(require(&quot;@babel/runtime-corejs2/regenerator&quot;));
+// corejs:3 - 输出代码
+var _regenerator = _interopRequireDefault(require(&quot;@babel/runtime-corejs3/regenerator&quot;));
+
+</code></pre>
+<p><strong>根据以上输出代码可知根据配置的不同项目依赖需要分别安装不同的runtime</strong></p>
+<pre><code class="bash">npm i --save @babel/runtime # corejs:false
+npm i --save @babel/runtime-corejs2 # corejs:2
+npm i --save @babel/runtime-corejs3 # corejs:3
+</code></pre>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="在一般项目中配置"><a href="#在一般项目中配置" class="headerlink" title="在一般项目中配置"></a>在一般项目中配置</h3><pre><code class="js"> // package.json
+ {
+   &quot;dependencies&quot;: {
+    &quot;core-js&quot;: &quot;^3.20.1&quot;
+  },
+  &quot;devDependencies&quot;{
+    &quot;@babel/core&quot;: &quot;^7.16.5&quot;,
+    &quot;@babel/plugin-proposal-decorators&quot;: &quot;^7.16.5&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.16.5&quot;,
+  }
+ }
+
+ // babel.config.js
+ {
+  presets: [
+    [
+      &quot;@babel/preset-env&quot;,
+      {
+        modules: &quot;auto&quot;,
+        loose: true,
+        useBuiltIns: &quot;usage&quot;,
+        corejs: &quot;3.20&quot;,
+      },
+    ],
+  ],
+  plugins: [
+    [&quot;@babel/plugin-proposal-decorators&quot;, { legacy: true }],
+  ],
+};
+
+</code></pre>
+<h3 id="在公共lib开发"><a href="#在公共lib开发" class="headerlink" title="在公共lib开发"></a>在公共lib开发</h3><pre><code class="js">//package.json
+{
+  &quot;dependencies&quot;: {
+    &quot;@babel/runtime-corejs3&quot;: &quot;^7.16.5&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.16.5&quot;,
+    &quot;@babel/plugin-proposal-decorators&quot;: &quot;^7.16.5&quot;,
+    &quot;@babel/plugin-transform-runtime&quot;: &quot;^7.16.5&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.16.5&quot;,
+  }
+ }
+
+// babel.config.js
+{
+  presets: [
+    [ &quot;@babel/preset-env&quot;, { modules: &quot;auto&quot; } ],
+  ],
+  plugins: [
+    [&quot;@babel/plugin-transform-runtime&quot;, { corejs: 3 }],
+    [&quot;@babel/plugin-proposal-decorators&quot;, { legacy: true }],
+  ],
+}
+
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2021 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>
