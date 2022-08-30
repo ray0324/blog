@@ -38,6 +38,10 @@ a {
   background: #222;
   color: #fff;
 }
+.pagination .space {
+  margin-right: 10px;
+  opacity: 0.8;
+}
 .article-list {
   padding-bottom: 20px;
 }
