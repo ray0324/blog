@@ -20,34 +20,37 @@ tags:
 
 我使用了`privoxy`和`shadowsocks`组合进行翻墙成功
 
-1. privoxy 安装
+### 1. privoxy 安装
 
 ```bash
 brew install privoxy
 ```
 
-2. 打开shadowsocks，查看到shadowsocks的socks5监听地址，我本机的监听地址为`127.0.0.1:1086`
+### 2. 打开shadowsocks，查看到shadowsocks的socks5监听地址，我本机的监听地址为`127.0.0.1:1086`
+
 ![privoxy](/assets/images/2019-05-29/1.png)
 
-3. 配置privoxy代理
+### 3. 配置privoxy代理
 
 ```bash
 # vim /usr/local/etc/privoxy/config
 listen-address 0.0.0.0:8118
 forward-socks5 / localhost:1086 .
 ```
-5. 在我们的path路径下配置一个软连接
+
+### 5. 在我们的path路径下配置一个软连接
 
 ```bash
 ln -s /usr/local/Cellar/privoxy/3.0.28/sbin/privoxy /usr/local/sbin/
 ```
 
-4. 启动privoxy
+### 4. 启动privoxy
 
 ```bash
 privoxy /usr/local/etc/privoxy/config
 ```
-5. 检测启动状态
+
+### 5. 检测启动状态
 
 ```bash
 netstat -an | grep 8118
@@ -57,23 +60,27 @@ netstat -an | grep 8118
 #tcp4       0      0  *.8118                 *.*                    LISTEN
 
 ```
-6. 配置代理
+
+### 6. 配置代理
 
 ```bash
 export http_proxy='http://localhost:8118'
 export https_proxy='http://localhost:8118'
 ```
-7. 测试是否成功
+
+### 7. 测试是否成功
 
 ```bash
 curl www.google.com
 ```
+
 ## 二、 安装flutter
 
 flutter的安装比较简单，我们到官网下载fluter包，解压后，即可使用。
 
-1. 拷贝解压后的flutter开发包，放置在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
-2. 配置环境变量$path
+### 1. 拷贝解压后的flutter开发包，放置在`/usr/local/flutter`目录下（目录可以自定，环境配置正确即可）。
+
+### 2. 配置环境变量$path
 
 ```bash
 # vim /etc/paths
@@ -87,13 +94,15 @@ flutter的安装比较简单，我们到官网下载fluter包，解压后，即�
 /Users/ray/Library/Android/sdk/tools
 /Users/ray/Library/Android/sdk/platform-tools
 ```
+
 *当然这里也可以设置`~/.bashprofile`或者`~/.zshrc` 看个人喜好了.配置完成后刷新一下*
 
 ```bash
 source /etc/paths
 # echo $path 就会输出我们配置的路径
 ```
-3. 检测flutter环境
+
+### 3. 检测flutter环境
 
 ```bash
 flutter doctor

@@ -119,7 +119,7 @@ Babel 是一个工具链,主要用于将 ECMAScript 2015+ 版本的代码转换�
 一般装了这个插件相应的也要安装相应的运行环境一般引入的插件不会造成全局污染
 适合开发公共lib库的时候引入,而对于一般性的项目则无需引入直接配置好prese-env即可
 
-```
+```bash
 npm i --save-dev @babel/plugin-transform-runtime
 ```
 
@@ -140,6 +140,7 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regene
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs3/regenerator"));
 
 ```
+
 **根据以上输出代码可知根据配置的不同项目依赖需要分别安装不同的runtime**
 
 ```bash
@@ -184,6 +185,7 @@ npm i --save @babel/runtime-corejs3 # corejs:3
 };
 
 ```
+
 ### 在公共lib开发
 
 ```js

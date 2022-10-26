@@ -16,11 +16,13 @@ tags:
 ```bash
 npm install -g verdaccio
 ```
+
 ## 启动
 
 ```bash
 verdaccio
 ```
+
 ## 配置
 
 ```yaml
@@ -140,6 +142,7 @@ nrm use local
 ```
 
 ## 使用NPM
+
 ```bash
 #创建用户
 npm adduser

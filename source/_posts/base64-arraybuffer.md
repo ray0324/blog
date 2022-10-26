@@ -24,6 +24,7 @@ console.log(arrayBuffer);
 
 
 ```
+
 **注意：nodejs无atob方法**
 
 ## 通过`Uint8Array`方法

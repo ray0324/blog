@@ -57,6 +57,7 @@ touch /etc/yum.repos.d/nginx.repo
 # 编辑
 vim /etc/yum.repos.d/nginx.repo
 ```
+
 ### 配置nginx的yun源
 
 ```conf
@@ -72,6 +73,7 @@ baseurl=http://nginx.org/packages/centos/7/x86_64/
 gpgcheck=0
 enabled=1
 ```
+
 ### 安装nginx
 
 ```bash
@@ -89,6 +91,7 @@ netstat -tunlp | grep nginx
 
 
 ```
+
 ### 配置nginx
 
 Nginx的配置参见[Nginx中文文档](http://www.nginx.cn/doc/),这里我根据实际需求，需要配置
@@ -159,6 +162,7 @@ systemctl enable mariadb
 mysql_secure_installation
 
 ```
+
 [参考](https://www.linuxidc.com/Linux/2016-03/128880.htm)
 
 

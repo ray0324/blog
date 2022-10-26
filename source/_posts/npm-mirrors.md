@@ -6,7 +6,7 @@ tags:
   - npm
 ---
 
-## NRM 
+## NRM
 
 ```bash
 npm i -g nrm

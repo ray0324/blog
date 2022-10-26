@@ -31,6 +31,7 @@ sudo certbot --nginx -d yourdomain.com
 ```
 
 如果我们只想生成证书，手工配置nginx，则使用
+
 ```bash
 sudo certbot --nginx certonly -d yourdomain.com
 ```
@@ -86,11 +87,12 @@ Let's Encrypt申请的证书会有三个月的有效期，可以到期前手动�
 
 ### 使用certbot自带服务
 
-```
+```bash
 systemctl start certbot-renew.service
 systemctl start certbot-renew.timer
 systemctl enable certbot-renew.timer
 systemctl list-timers
 
 ```
+
 [参考视频(需要翻墙)](https://www.youtube.com/watch?v=eHVc08HVTwI)

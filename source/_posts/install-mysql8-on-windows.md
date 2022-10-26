@@ -43,7 +43,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
 
 *注：要使用管理员身份安装，否则可能出现mysql Install/Remove of the Service Denied!错误*
 
-# 常用命令
+## 常用命令
 
 ```bash
 # 1. 停止服务
@@ -72,6 +72,7 @@ mysqldump -u dbuser -p -d --add-drop-table dbname >d:/dbname_db.sql
 mysql>source d:/dbname.sql
 
 ```
+
 **解决 `client does not support authentication protocol requested by server;`**
 
 ```sql

@@ -5,7 +5,7 @@ tags:
   - Go
 ---
 
-# 一、环境变量配置
+## 环境变量配置
 
 启用go modules 功能，首先需要进行环境变量配置
 
@@ -25,7 +25,7 @@ export GOPROXY=https://goproxy.cn
 export GOPATH=~/ray/go
 ```
 
-*注： go代理也可以用https://goproxy.io/*
+*注： go代理也可以用<https://goproxy.io/>*
 
 ## 使用go modules示例
 
@@ -44,21 +44,21 @@ go mod init girhub/ray0324/logger
 
 生成的go.mod内容如下
 
-```
+```text
 module logger
 
 go 1.13
 
 require (
-	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
-	github.com/sirupsen/logrus v1.4.2
-	golang.org/x/sys v0.0.0-20191210023423-ac6580df4449 // indirect
+ github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
+ github.com/sirupsen/logrus v1.4.2
+ golang.org/x/sys v0.0.0-20191210023423-ac6580df4449 // indirect
 )
 ```
 
 项目结构：
 
-```
+```text
 logger
     ├─main --- main包入口
     └─mylog --- 自定义的包
@@ -75,8 +75,8 @@ import "fmt"
 import "logger/mylog"
 
 func main() {
-	fmt.Println("hello")
-	mylog.Log("hi")
+ fmt.Println("hello")
+ mylog.Log("hi")
 }
 
 ```
@@ -91,7 +91,7 @@ import "github.com/sirupsen/logrus"
 
 // Log log info
 func Log(str string) {
-	logrus.Info(str)
+ logrus.Info(str)
 }
 
 ```

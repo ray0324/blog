@@ -7,7 +7,7 @@ tags:
 
 ## 一、下载 Android Studio
 
-1. 下载安装包
+#### 1. 下载安装包
 
 *注意：**建议**下载**免安装**版本的，这个版本的压缩包里面自带`jre`，下载完成后解压即
 可,电脑已安装过`jdk`或者有`jre`环境的请自行选择。*
@@ -15,10 +15,9 @@ tags:
 [Android Studio 官网下载链接](https://developer.android.google.cn/studio/#downloads)
 
 
-2. 解压并拷贝到电脑程序目录，我这里新建了个目录`D:\Soft\Android`,并将Android Studio
-   拷贝到该目录下了。
+#### 2. 解压并拷贝到电脑程序目录，我这里新建了个目录`D:\Soft\Android`,并将Android Studio拷贝到该目录下
 
-3. 新建环境变量,并将java的执行应用程序路径添加到path里
+#### 3. 新建环境变量,并将java的执行应用程序路径添加到path里
 
 ```bash
 # 新建环境变量:

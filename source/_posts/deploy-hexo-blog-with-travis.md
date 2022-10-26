@@ -31,11 +31,12 @@ tags:
 这里我就不详细介绍Hexo的使用了，有需求参见[Hexo文档](https://hexo.io/docs/)。
 
 ```bash
-$ mkdir blog
-$ cd blog
-$ npm init -y
-$ npm install
+mkdir blog
+cd blog
+npm init -y
+npm install
 ```
+
 ### 四、将静态博客源码推送到远端源码仓库
 
 在博客目录`blog`下进行初`git`始化:
@@ -51,7 +52,7 @@ git push -u origin master
 
 ## 使用Travis CI进行自动化部署
 
-### 一、注册使用Github账号注册Travis CI账号。
+### 一、注册使用Github账号注册Travis CI账号
 
 我们直接使用github账号授权登录Travis CI
 

@@ -18,7 +18,7 @@ docker pull nginx:latest
 ## 进行测试
 
 ```bash
-$ sudo docker run --name nginx-test -p 8081:80 -d nginx
+sudo docker run --name nginx-test -p 8081:80 -d nginx
 ```
 
 ## 查看docker镜像进程
@@ -28,10 +28,11 @@ $ sudo docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                  NAMES
 2e378de7ff4b   nginx     "/docker-entrypoint.…"   46 minutes ago   Up 46 minutes   0.0.0.0:8080->80/tcp   nginx
 ```
+
 ## 将容器中的nginx配置文件拷贝到物理机上来
 
 ```bash
-$ sudo docker cp 2e378de7ff4b:/etc/nginx/ ./nginx/
+sudo docker cp 2e378de7ff4b:/etc/nginx/ ./nginx/
 ```
 
 ## 启动应用

@@ -15,7 +15,7 @@ WebSocket协议的握手采用http请求，首先由客户端发起一个一个h
 
 ### 2.1 请求报文
 
-```
+```text
 
 GET / HTTP/1.1
 Host: 127.0.0.1:5001
@@ -35,7 +35,7 @@ Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 
 我们提取一下这个握手请求中关键部分：
 
-```
+```text
 
 GET / HTTP/1.1
 Host: 127.0.0.1:5001
@@ -53,7 +53,7 @@ Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 
 响应报文的关键部分：
 
-```
+```text
 
 HTTP/1.1 101 Switching Protocols
 Connection: Upgrade
@@ -61,6 +61,7 @@ Upgrade: websocket
 Sec-WebSocket-Accept: eXzH3FMcn1/SVIsQt1CY911cvSw=
 
 ```
+
 其中`Sec-WebSocket-Accept`字段是服务端根据客户端握手请求报文中`Sec-WebSocket-Key`字段值进行特定的计算而得到的，其计算方式如下
 
 ```js
@@ -77,7 +78,7 @@ crypto.createHash('sha1').update('GmWO5Q6xbLV6omMei0ZYmQ=='+'258EAFA5-E914-47DA-
 
 ## 数据帧
 
-```
+```text
 
  0                   1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1

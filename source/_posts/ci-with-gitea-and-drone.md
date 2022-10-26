@@ -12,6 +12,7 @@ tags:
 ```bash
 docker run -d --name=gitea -p 8022:22 -p 8000:3000 -v /srv/docker/gitea:/data gitea/gitea:latest
 ```
+
 **注意: Gitea放在docker-compose配置中启动容易报错，这里单独启动!!!**
 
 ## Drone
@@ -67,6 +68,7 @@ services:
   - DRONE_GITEA_CLIENT_ID=a7ef0e98-0a74-4a22-b52e-9b3dbfe612a0
   - DRONE_GITEA_CLIENT_SECRET=w4kRYl4Pj-lNVFGhbzbNo3GQPsBs1buNE20pFOPYytw=
 ```
+
 这三个变量需要在Gitea中配置Oauth生成。
 
 ### Gogs
@@ -74,7 +76,7 @@ services:
 Gogs的配置类似，由于Gogs目前不支持OAuth访问Drone主页使用Gogs的账户进行登录即可自动拉取当前
 账户的仓库信息。
 
-```
+```env
   - DRONE_GOGS=true
   - DRONE_GOGS_SKIP_VERIFY=false
   - DRONE_GOGS_SERVER=http://172.27.2.157:8000
