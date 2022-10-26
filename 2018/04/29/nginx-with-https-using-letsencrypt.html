@@ -55,10 +55,11 @@ server {
 }
 </code></pre>
 <h2 id="三、-证书自动续期"><a href="#三、-证书自动续期" class="headerlink" title="三、 证书自动续期"></a>三、 证书自动续期</h2><p>Let’s Encrypt申请的证书会有三个月的有效期，可以到期前手动续约。</p>
-<h3 id="使用certbot自带服务"><a href="#使用certbot自带服务" class="headerlink" title="使用certbot自带服务"></a>使用certbot自带服务</h3><pre><code>systemctl start certbot-renew.service
+<h3 id="使用certbot自带服务"><a href="#使用certbot自带服务" class="headerlink" title="使用certbot自带服务"></a>使用certbot自带服务</h3><pre><code class="bash">systemctl start certbot-renew.service
 systemctl start certbot-renew.timer
 systemctl enable certbot-renew.timer
 systemctl list-timers
 
-</code></pre><p><a href="https://www.youtube.com/watch?v=eHVc08HVTwI" target="_blank" rel="noopener">参考视频(需要翻墙)</a></p>
+</code></pre>
+<p><a href="https://www.youtube.com/watch?v=eHVc08HVTwI" target="_blank" rel="noopener">参考视频(需要翻墙)</a></p>
 </article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2022 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

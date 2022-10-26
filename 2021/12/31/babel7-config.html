@@ -87,8 +87,9 @@
 <h3 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="@babel/plugin-transform-runtime"></a>@babel/plugin-transform-runtime</h3><p>这个插件可以抽出转码过程中的一些帮助方法，使之可以在项目中复用
 一般装了这个插件相应的也要安装相应的运行环境一般引入的插件不会造成全局污染
 适合开发公共lib库的时候引入,而对于一般性的项目则无需引入直接配置好prese-env即可</p>
-<pre><code>npm i --save-dev @babel/plugin-transform-runtime
-</code></pre><pre><code class="js">
+<pre><code class="bash">npm i --save-dev @babel/plugin-transform-runtime
+</code></pre>
+<pre><code class="js">
 // babel配置corejs:false/2/3
 {
   plugins: [

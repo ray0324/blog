@@ -3,13 +3,13 @@ docker search nginx
 #拉取nginx最新版镜像
 docker pull nginx:latest
 </code></pre>
-<h2 id="进行测试"><a href="#进行测试" class="headerlink" title="进行测试"></a>进行测试</h2><pre><code class="bash">$ sudo docker run --name nginx-test -p 8081:80 -d nginx
+<h2 id="进行测试"><a href="#进行测试" class="headerlink" title="进行测试"></a>进行测试</h2><pre><code class="bash">sudo docker run --name nginx-test -p 8081:80 -d nginx
 </code></pre>
 <h2 id="查看docker镜像进程"><a href="#查看docker镜像进程" class="headerlink" title="查看docker镜像进程"></a>查看docker镜像进程</h2><pre><code class="bash">$ sudo docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                  NAMES
 2e378de7ff4b   nginx     &quot;/docker-entrypoint.…&quot;   46 minutes ago   Up 46 minutes   0.0.0.0:8080-&gt;80/tcp   nginx
 </code></pre>
-<h2 id="将容器中的nginx配置文件拷贝到物理机上来"><a href="#将容器中的nginx配置文件拷贝到物理机上来" class="headerlink" title="将容器中的nginx配置文件拷贝到物理机上来"></a>将容器中的nginx配置文件拷贝到物理机上来</h2><pre><code class="bash">$ sudo docker cp 2e378de7ff4b:/etc/nginx/ ./nginx/
+<h2 id="将容器中的nginx配置文件拷贝到物理机上来"><a href="#将容器中的nginx配置文件拷贝到物理机上来" class="headerlink" title="将容器中的nginx配置文件拷贝到物理机上来"></a>将容器中的nginx配置文件拷贝到物理机上来</h2><pre><code class="bash">sudo docker cp 2e378de7ff4b:/etc/nginx/ ./nginx/
 </code></pre>
 <h2 id="启动应用"><a href="#启动应用" class="headerlink" title="启动应用"></a>启动应用</h2><pre><code class="bash">#! /usr/bin/bash
 sudo docker run -d -p 80:80 --name nginx \

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Go modules的配置实践</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Go modules的配置实践</h1><div class="meta"><time>2019-12-10</time><div class="tags"><a class="tag-link" href="/tags/Go/">Go </a></div></div><article id="markdown"><h1 id="一、环境变量配置"><a href="#一、环境变量配置" class="headerlink" title="一、环境变量配置"></a>一、环境变量配置</h1><p>启用go modules 功能，首先需要进行环境变量配置</p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Go modules的配置实践</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Go modules的配置实践</h1><div class="meta"><time>2019-12-10</time><div class="tags"><a class="tag-link" href="/tags/Go/">Go </a></div></div><article id="markdown"><h2 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><p>启用go modules 功能，首先需要进行环境变量配置</p>
 <p>win:</p>
 <pre><code class="bat">set GO111MODULE=on
 set GOPROXY=https://goproxy.cn
@@ -19,20 +19,22 @@ go mod init girhub/ray0324/logger
 </code></pre>
 <p><em>注： 这里的girhub/ray0324/logger可以随意 可以直接用go mod init logger</em></p>
 <p>生成的go.mod内容如下</p>
-<pre><code>module logger
+<pre><code class="text">module logger
 
 go 1.13
 
 require (
-    github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
-    github.com/sirupsen/logrus v1.4.2
-    golang.org/x/sys v0.0.0-20191210023423-ac6580df4449 // indirect
+ github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
+ github.com/sirupsen/logrus v1.4.2
+ golang.org/x/sys v0.0.0-20191210023423-ac6580df4449 // indirect
 )
-</code></pre><p>项目结构：</p>
-<pre><code>logger
+</code></pre>
+<p>项目结构：</p>
+<pre><code class="text">logger
     ├─main --- main包入口
     └─mylog --- 自定义的包
-</code></pre><p>main 包：</p>
+</code></pre>
+<p>main 包：</p>
 <pre><code class="go">// logger/main/main.go
 package main
 
@@ -41,8 +43,8 @@ import &quot;fmt&quot;
 import &quot;logger/mylog&quot;
 
 func main() {
-    fmt.Println(&quot;hello&quot;)
-    mylog.Log(&quot;hi&quot;)
+ fmt.Println(&quot;hello&quot;)
+ mylog.Log(&quot;hi&quot;)
 }
 
 </code></pre>
@@ -54,7 +56,7 @@ import &quot;github.com/sirupsen/logrus&quot;
 
 // Log log info
 func Log(str string) {
-    logrus.Info(str)
+ logrus.Info(str)
 }
 
 </code></pre>

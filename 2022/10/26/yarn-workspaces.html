@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>yarn workspaces</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>yarn workspaces</h1><div class="meta"><time>2022-10-26</time><div class="tags"><a class="tag-link" href="/tags/workspace/">workspace </a><a class="tag-link" href="/tags/monorepo/">monorepo </a></div></div><article id="markdown"><h2 id="Yarn-berry环境安装"><a href="#Yarn-berry环境安装" class="headerlink" title="Yarn berry环境安装"></a>Yarn berry环境安装</h2><h3 id="全局安装yarn"><a href="#全局安装yarn" class="headerlink" title="全局安装yarn"></a>全局安装yarn</h3><pre><code class="bash">npm i -g yarn
+</code></pre>
+<h3 id="在项目中开启yarn-berry"><a href="#在项目中开启yarn-berry" class="headerlink" title="在项目中开启yarn berry"></a>在项目中开启yarn berry</h3><pre><code class="bash">cd project
+yarn set version berry
+# 或者设置到最新版本
+#yarn set version latest
+</code></pre>
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><p>创建<code>.yarnrc.yml</code>文件</p>
+<pre><code class="yml">httpProxy: &quot;http://127.0.0.1:1087&quot;
+httpsProxy: &quot;http://127.0.0.1:1087&quot;
+yarnPath: .yarn/releases/yarn-3.2.4.cjs
+</code></pre>
+<h3 id="安装相关插件"><a href="#安装相关插件" class="headerlink" title="安装相关插件"></a>安装相关插件</h3><pre><code class="bash"># 查看已经存在的插件
+yarn plugin runtime
+
+# 列出可以安装的插件
+yarn plugin list
+
+# 在当前环境倒入插件
+yarn plugin import workspace-tools
+
+</code></pre>
+<h3 id="workspaces相关操作"><a href="#workspaces相关操作" class="headerlink" title="workspaces相关操作"></a>workspaces相关操作</h3><pre><code class="bash"># 列出所有包
+yarn workspaces list
+
+# 构建所有包
+yarn workspaces foreach run build
+
+# 构建单个包 @yv2/foo 为包在package.json中的名称
+yarn workspace @yv2/foo build
+
+</code></pre>
+</article></div></div><footer id="footer"><div class="container"><div class="copy">Copyright &copy; 2022 Ray0324</div><nav><a href="/">首页</a><a href="/archives/">归档</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></div></footer><script src="/lib/jquery/jquery.min.js"></script><script src="/lib/highlight/highlight.pack.js"></script><script src="/lib/push.js"></script><script src="/js/nano.js"></script></body></html>

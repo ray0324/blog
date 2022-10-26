@@ -1,17 +1,7 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Windows下Flutter环境搭建</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Windows下Flutter环境搭建</h1><div class="meta"><time>2020-04-03</time><div class="tags"><a class="tag-link" href="/tags/Flutter/">Flutter </a></div></div><article id="markdown"><h2 id="一、下载-Android-Studio"><a href="#一、下载-Android-Studio" class="headerlink" title="一、下载 Android Studio"></a>一、下载 Android Studio</h2><ol>
-<li>下载安装包</li>
-</ol>
-<p><em>注意：<strong>建议</strong>下载<strong>免安装</strong>版本的，这个版本的压缩包里面自带<code>jre</code>，下载完成后解压即
+<!DOCTYPE html><html lang="zh-cn"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Windows下Flutter环境搭建</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/lib/highlight/styles/atom-one-dark.css"></head><body><header class="navbar navbar-fixed"><div class="navbar-nav"><div class="container"><a class="brand"></a><ul><li><a href="/">首页</a></li><li><a href="/archives/">归档</a></li><li><a href="/tags/">标签</a></li><li><a href="/about/">关于</a></li></ul></div></div><div class="navbar-line"><div class="navbar-wrap"><div class="container current"><div class="cur"></div></div></div></div></header><div class="main"><div class="container post"><h1>Windows下Flutter环境搭建</h1><div class="meta"><time>2020-04-03</time><div class="tags"><a class="tag-link" href="/tags/Flutter/">Flutter </a></div></div><article id="markdown"><h2 id="一、下载-Android-Studio"><a href="#一、下载-Android-Studio" class="headerlink" title="一、下载 Android Studio"></a>一、下载 Android Studio</h2><h4 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a>1. 下载安装包</h4><p><em>注意：<strong>建议</strong>下载<strong>免安装</strong>版本的，这个版本的压缩包里面自带<code>jre</code>，下载完成后解压即
 可,电脑已安装过<code>jdk</code>或者有<code>jre</code>环境的请自行选择。</em></p>
 <p><a href="https://developer.android.google.cn/studio/#downloads" target="_blank" rel="noopener">Android Studio 官网下载链接</a></p>
-<ol start="2">
-<li><p>解压并拷贝到电脑程序目录，我这里新建了个目录<code>D:\Soft\Android</code>,并将Android Studio
-拷贝到该目录下了。</p>
-</li>
-<li><p>新建环境变量,并将java的执行应用程序路径添加到path里</p>
-</li>
-</ol>
-<pre><code class="bash"># 新建环境变量:
+<h4 id="2-解压并拷贝到电脑程序目录，我这里新建了个目录D-Soft-Android-并将Android-Studio拷贝到该目录下"><a href="#2-解压并拷贝到电脑程序目录，我这里新建了个目录D-Soft-Android-并将Android-Studio拷贝到该目录下" class="headerlink" title="2. 解压并拷贝到电脑程序目录，我这里新建了个目录D:\Soft\Android,并将Android Studio拷贝到该目录下"></a>2. 解压并拷贝到电脑程序目录，我这里新建了个目录<code>D:\Soft\Android</code>,并将Android Studio拷贝到该目录下</h4><h4 id="3-新建环境变量-并将java的执行应用程序路径添加到path里"><a href="#3-新建环境变量-并将java的执行应用程序路径添加到path里" class="headerlink" title="3. 新建环境变量,并将java的执行应用程序路径添加到path里"></a>3. 新建环境变量,并将java的执行应用程序路径添加到path里</h4><pre><code class="bash"># 新建环境变量:
 JAVA_HOME: D:\Soft\Android\android-studio\jre
 CLASSPATH: %JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
 
