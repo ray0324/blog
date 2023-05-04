@@ -1,5 +1,5 @@
 # Blog
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ray0324/blog/blog-build-and-deploy?style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ray0324/blog/ci.yml?branch=master)
 
 [iray.me](https://iray.me)
