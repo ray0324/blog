@@ -25,15 +25,38 @@ function calculateMA(dayCount, data) {
   var result = [];
   for (var i = 0, len = data.length; i < len; i++) {
     if (i < dayCount) {
-      result.push("-");
+      result.push(undefined);
       continue;
     }
     var sum = 0;
     // 计算 (i-dayCount,i]收盘价总和
     for (var j = 0; j < dayCount; j++) {
-      sum += data[i - j]["close"];
+      sum += data[i - j];
     }
     result.push(sum / dayCount);
+  }
+  return result;
+}
+```
+
+### 算法优化
+
+```js
+function MA(n, data) {
+  let result = [];
+  let sum = 0;
+  for (let i = 0, len = data.length; i < len; i++) {
+    sum += data[i];
+    if (i >= n) {
+      sum -= data[i - n];
+    }
+
+    // 保证前n-1个数据为undefined
+    if (i < n - 1) {
+      result.push(undefined);
+      continue;
+    }
+    result.push(sum / n);
   }
   return result;
 }
