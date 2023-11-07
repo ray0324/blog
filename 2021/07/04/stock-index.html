@@ -8,15 +8,34 @@ function calculateMA(dayCount, data) {
   var result = [];
   for (var i = 0, len = data.length; i &lt; len; i++) {
     if (i &lt; dayCount) {
-      result.push(&quot;-&quot;);
+      result.push(undefined);
       continue;
     }
     var sum = 0;
     // 计算 (i-dayCount,i]收盘价总和
     for (var j = 0; j &lt; dayCount; j++) {
-      sum += data[i - j][&quot;close&quot;];
+      sum += data[i - j];
     }
     result.push(sum / dayCount);
+  }
+  return result;
+}
+</code></pre>
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><pre><code class="js">function MA(n, data) {
+  let result = [];
+  let sum = 0;
+  for (let i = 0, len = data.length; i &lt; len; i++) {
+    sum += data[i];
+    if (i &gt;= n) {
+      sum -= data[i - n];
+    }
+
+    // 保证前n-1个数据为undefined
+    if (i &lt; n - 1) {
+      result.push(undefined);
+      continue;
+    }
+    result.push(sum / n);
   }
   return result;
 }
